@@ -31,8 +31,11 @@
 # Quality-first development approach / 品質優先開發方法
 /sccpm:develop "風險管理系統" --quality-first --extensive-testing
 
-# Parallel feature development / 並行功能開發
-/sccpm:develop "用戶介面" --parallel-features --responsive-design
+# Parallel feature development with GitHub integration / 並行功能開發與 GitHub 整合
+/sccpm:develop "用戶介面" --parallel-features --github-sync --auto-pr
+
+# Game development with specialized agents / 遊戲開發專用代理
+/sccpm:develop "epic-01-puzzle-strategy-system" --mode balanced --agents 6 --focus game-logic --github-integration
 ```
 
 Execute the complete development execution and orchestration workflow:

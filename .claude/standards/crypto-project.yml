@@ -1,0 +1,220 @@
+# SCCPM 專案開發規範配置 - 加密貨幣交易系統
+# SCCPM Project Development Standards - Cryptocurrency Trading System
+
+project_info:
+  name: "crypto-trading-bot"
+  type: "fintech-trading"
+  category: "high-frequency-financial"
+  compliance_level: "enterprise"
+
+# 代碼品質規範 / Code Quality Standards
+code_standards:
+  formatting:
+    tool: "prettier"
+    config:
+      useTabs: true
+      tabWidth: 4
+      printWidth: 200
+      singleQuote: true
+      trailingComma: "es5"
+      bracketSpacing: true
+      arrowParens: "avoid"
+
+  linting:
+    tool: "eslint"
+    rules:
+      - "no-console: error"  # 禁止 console.log 進入生產環境
+      - "no-debugger: error"  # 禁止 debugger 語句
+      - "no-unused-vars: error"  # 禁止未使用變數
+      - "@typescript-eslint/no-explicit-any: warn"  # 警告使用 any 類型
+      - "complexity: [error, 10]"  # 函數複雜度限制
+
+  typescript:
+    strict: true
+    noImplicitAny: true
+    strictNullChecks: true
+    noUncheckedIndexedAccess: true
+
+# 架構規範 / Architecture Standards
+architecture:
+  patterns:
+    - "composition-api"  # Vue 3 Composition API 優先
+    - "dependency-injection"  # 依賴注入模式
+    - "event-driven"  # 事件驅動架構
+    - "microservices-ready"  # 微服務就緒設計
+
+  structure:
+    max_file_lines: 300  # 單檔案最大行數
+    max_function_lines: 50  # 單函數最大行數
+    max_component_props: 10  # Vue 組件最大 props 數
+
+  naming_conventions:
+    files: "kebab-case"  # user-profile.vue
+    components: "PascalCase"  # UserProfile
+    variables: "camelCase"  # userProfile
+    constants: "SCREAMING_SNAKE_CASE"  # API_BASE_URL
+    css_classes: "BEM"  # .block__element--modifier
+
+# 安全規範 / Security Standards
+security:
+  level: "high"  # low | medium | high | critical
+  requirements:
+    - "no-hardcoded-secrets"  # 禁止硬編碼密鑰
+    - "input-validation"  # 強制輸入驗證
+    - "sql-injection-prevention"  # SQL注入防護
+    - "xss-protection"  # XSS 攻擊防護
+    - "csrf-protection"  # CSRF 攻擊防護
+    - "rate-limiting"  # API 速率限制
+
+  crypto_specific:
+    - "private-key-encryption"  # 私鑰加密存儲
+    - "api-key-rotation"  # API 金鑰定期輪換
+    - "transaction-signing"  # 交易簽名驗證
+    - "audit-logging"  # 完整審計日誌
+
+# 測試規範 / Testing Standards
+testing:
+  coverage:
+    unit: 85  # 單元測試覆蓋率要求
+    integration: 75  # 整合測試覆蓋率要求
+    e2e: 60  # E2E 測試覆蓋率要求
+
+  frameworks:
+    unit: "vitest"  # 單元測試框架
+    e2e: "playwright"  # E2E 測試框架
+    component: "@vue/test-utils"  # 組件測試
+
+  requirements:
+    - "no-skip-tests"  # 禁止跳過測試
+    - "meaningful-assertions"  # 有意義的斷言
+    - "mock-external-apis"  # Mock 外部 API
+    - "test-error-cases"  # 測試錯誤情況
+
+# 性能規範 / Performance Standards
+performance:
+  targets:
+    lighthouse_score: 90  # Lighthouse 分數要求
+    first_contentful_paint: "1.5s"  # 首次內容繪製時間
+    largest_contentful_paint: "2.5s"  # 最大內容繪製時間
+    cumulative_layout_shift: 0.1  # 累積版面偏移
+
+  trading_specific:
+    api_response_time: "100ms"  # API 響應時間
+    websocket_latency: "10ms"  # WebSocket 延遲
+    order_execution_time: "50ms"  # 訂單執行時間
+    price_update_frequency: "1ms"  # 價格更新頻率
+
+# Git 工作流程規範 / Git Workflow Standards
+git:
+  workflow: "gitflow"  # gitflow | github-flow | gitlab-flow
+  branch_naming:
+    feature: "feature/ISSUE-ID-description"
+    bugfix: "bugfix/ISSUE-ID-description"
+    hotfix: "hotfix/ISSUE-ID-description"
+    release: "release/v1.0.0"
+
+  commit_convention: "conventional"  # conventional | angular | custom
+  commit_message_format:
+    - "feat: 新增功能"
+    - "fix: 修復錯誤"
+    - "docs: 文檔更新"
+    - "style: 代碼格式調整"
+    - "refactor: 代碼重構"
+    - "test: 測試相關"
+    - "chore: 建置或工具相關"
+
+  protection_rules:
+    main:
+      require_reviews: 2
+      dismiss_stale_reviews: true
+      require_code_owner_review: true
+      require_status_checks: true
+
+# 文檔規範 / Documentation Standards
+documentation:
+  required:
+    - "README.md"  # 專案說明
+    - "API.md"  # API 文檔
+    - "CHANGELOG.md"  # 變更日誌
+    - "CONTRIBUTING.md"  # 貢獻指南
+    - "DEPLOYMENT.md"  # 部署說明
+
+  api_documentation:
+    format: "openapi"  # openapi | swagger | raml
+    version: "3.0.0"
+    auto_generate: true
+
+  code_comments:
+    language: "zh-TW"  # 使用繁體中文註解
+    jsdoc: true  # 使用 JSDoc 格式
+    coverage: 80  # 註解覆蓋率要求
+
+# 部署規範 / Deployment Standards
+deployment:
+  strategy: "blue-green"  # blue-green | rolling | canary
+  environments:
+    - "development"
+    - "staging"
+    - "production"
+
+  ci_cd:
+    platform: "github-actions"  # github-actions | gitlab-ci | jenkins
+    auto_deploy_staging: true
+    auto_deploy_production: false  # 需人工確認
+
+  monitoring:
+    required:
+      - "health-checks"
+      - "performance-monitoring"
+      - "error-tracking"
+      - "business-metrics"
+
+# 合規要求 / Compliance Requirements
+compliance:
+  financial:
+    - "PCI-DSS"  # 支付卡行業資料安全標準
+    - "SOX"  # 沙賓法案
+    - "MiFID-II"  # 金融工具市場法規
+
+  data_protection:
+    - "GDPR"  # 通用資料保護規範
+    - "CCPA"  # 加州消費者隱私法
+
+  crypto_specific:
+    - "AML"  # 反洗錢
+    - "KYC"  # 了解你的客戶
+    - "FATF"  # 金融行動特別工作組
+
+# 特殊配置 / Special Configuration
+special_requirements:
+  real_time:
+    max_latency: "10ms"
+    update_frequency: "1000Hz"
+    connection_redundancy: true
+
+  financial:
+    decimal_precision: 8  # 小數點精度
+    currency_handling: "big-decimal"  # 使用 BigDecimal
+    transaction_logging: "comprehensive"  # 完整交易日誌
+
+  ai_ml:
+    model_versioning: true  # 模型版本控制
+    a_b_testing: true  # A/B 測試支援
+    model_monitoring: true  # 模型性能監控
+
+# 團隊協作規範 / Team Collaboration Standards
+collaboration:
+  communication:
+    language: "zh-TW"  # 團隊溝通語言
+    documentation_language: "zh-TW"  # 文檔語言
+    code_comments_language: "zh-TW"  # 代碼註解語言
+
+  review_process:
+    min_reviewers: 2
+    auto_assign: true
+    expertise_matching: true  # 根據專業領域分配審查者
+
+  knowledge_sharing:
+    tech_talks: "monthly"  # 每月技術分享
+    code_review_sessions: "weekly"  # 每週代碼審查會議
+    documentation_reviews: "quarterly"  # 每季文檔審查
