@@ -100,12 +100,30 @@ CCPM 支持多Agent並行執行，可標記 "parallel: true" 的任務。
 
         // 配置 CCPM 與整合框架的連接
         console.log(chalk.green('🔗 配置 CCPM 整合連接...'));
+
+        // 檢查 CCPM 配置文件是否存在，提供默認配置
+        let ccpmCommands = [];
+        const ccpmConfigPath = path.join(CCPM_DIR, 'config', 'ccpm-config.json');
+
+        if (await fs.pathExists(ccpmConfigPath)) {
+            try {
+                const ccpmConfig = await fs.readJSON(ccpmConfigPath);
+                ccpmCommands = Object.keys(ccpmConfig.commands || {});
+            } catch (error) {
+                console.log(chalk.yellow('⚠️  讀取 CCPM 配置失敗，使用默認配置'));
+            }
+        } else {
+            // 使用默認命令列表
+            ccpmCommands = ['prd-new', 'epic-decompose', 'epic-start', 'issue-start', 'issue-sync', 'next', 'status'];
+            console.log(chalk.yellow('⚠️  CCPM 配置文件不存在，使用默認命令列表'));
+        }
+
         const integrationConfig = {
             ccpm: {
                 installed: true,
                 path: CCPM_DIR,
                 version: "1.0.0",
-                commands: Object.keys((await fs.readJSON(path.join(CCPM_DIR, 'config', 'ccpm-config.json'))).commands),
+                commands: ccpmCommands,
                 integrationStatus: "ready"
             }
         };
