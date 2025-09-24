@@ -258,6 +258,11 @@ git submodule update --init --recursive
 
 # 進入子模塊目錄安裝
 cd .superclaude-pm
+
+# 先安裝 npm 依賴
+npm install
+
+# 執行完整安裝
 npm run install-all
 npm run validate
 
@@ -288,6 +293,11 @@ npx degit taihochan/superclaude-code-pm .superclaude-pm
 
 # 安裝框架
 cd .superclaude-pm
+
+# 先安裝 npm 依賴
+npm install
+
+# 執行完整安裝
 npm run install-all
 npm run validate
 cd ..
@@ -307,6 +317,11 @@ rm superclaude-pm.zip
 
 # 安裝框架
 cd .superclaude-pm
+
+# 先安裝 npm 依賴
+npm install
+
+# 執行完整安裝
 npm run install-all
 npm run validate
 cd ..

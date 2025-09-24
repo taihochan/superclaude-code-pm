@@ -21,7 +21,12 @@ async function installSuperClaude() {
         if (await fs.pathExists(SUPERCLAUDE_DIR)) {
             console.log(chalk.yellow('⚠️  SuperClaude 目錄已存在，正在更新...'));
             process.chdir(SUPERCLAUDE_DIR);
-            execSync('git pull origin main', { stdio: 'inherit' });
+            try {
+                // 使用 git pull 不指定分支，讓它自動使用當前分支
+                execSync('git pull', { stdio: 'inherit' });
+            } catch (error) {
+                console.log(chalk.yellow('⚠️  Git 更新失敗，跳過更新步驟...'));
+            }
             process.chdir('..');
         } else {
             // 克隆真實的 SuperClaude Framework 倉庫
