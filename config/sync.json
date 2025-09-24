@@ -1,0 +1,209 @@
+{
+  "version": "1.0.0",
+  "description": "CCPM和SuperClaude狀態同步配置",
+  "lastUpdated": "2025-09-24T11:39:22Z",
+
+  "general": {
+    "enabled": true,
+    "defaultMode": "immediate",
+    "syncTimeout": 30000,
+    "maxRetries": 3,
+    "retryDelay": 1000,
+    "continueOnError": true,
+    "logErrors": true
+  },
+
+  "performance": {
+    "batchSize": 50,
+    "batchDelay": 100,
+    "maxConcurrentSyncs": 5,
+    "maxLatency": 100,
+    "debounceDelay": 50
+  },
+
+  "fileWatcher": {
+    "enabled": true,
+    "recursive": true,
+    "batchDelay": 100,
+    "maxBatchSize": 50,
+    "debounceDelay": 50,
+    "maxWatchers": 1000,
+    "maxFileSize": 10485760
+  },
+
+  "watchPaths": {
+    "critical": [
+      "package.json",
+      "vite.config.js",
+      ".claude/CLAUDE.md",
+      ".claude/config"
+    ],
+    "important": [
+      "src/config",
+      "src/main.js",
+      "src/router/index.js",
+      "src/stores",
+      "src/services"
+    ],
+    "standard": [
+      "src/components",
+      "src/views",
+      "src/composables",
+      "src/lib",
+      "src/utils"
+    ]
+  },
+
+  "syncModes": {
+    "immediate": {
+      "enabled": true,
+      "maxLatency": 100,
+      "maxConcurrency": 10,
+      "timeout": 5000,
+      "retryDelay": 50,
+      "applyTo": [
+        "package.json",
+        "vite.config.js",
+        ".claude/CLAUDE.md",
+        ".claude/config/*.json"
+      ]
+    },
+
+    "batch": {
+      "enabled": true,
+      "batchInterval": 1000,
+      "maxBatchSize": 50,
+      "maxWaitTime": 5000,
+      "mergeSimilar": true,
+      "applyTo": [
+        "src/**/*.{js,vue,ts}",
+        "tests/**/*.{js,ts}",
+        "scripts/**/*.js"
+      ]
+    },
+
+    "scheduled": {
+      "enabled": true,
+      "defaultInterval": 300000,
+      "maxInterval": 3600000,
+      "minInterval": 30000,
+      "executeOnStart": false,
+      "skipIfNoChanges": true,
+      "applyTo": [
+        "docs/**/*",
+        "README.md",
+        "CHANGELOG.md"
+      ]
+    },
+
+    "manual": {
+      "enabled": true,
+      "requireConfirmation": true,
+      "showPreview": true,
+      "allowBulkOperations": false,
+      "timeout": 30000,
+      "applyTo": [
+        ".env*",
+        "deployment/**/*",
+        "sensitive-config/**/*"
+      ]
+    }
+  },
+
+  "conflictResolution": {
+    "enabled": true,
+    "defaultStrategy": "auto_merge",
+    "autoResolveThreshold": "medium",
+    "strategies": {
+      "auto_merge": {
+        "description": "自動合併非衝突變更",
+        "priority": 1
+      },
+      "source_wins": {
+        "description": "源優先策略",
+        "priority": 2
+      },
+      "target_wins": {
+        "description": "目標優先策略",
+        "priority": 3
+      },
+      "newest_wins": {
+        "description": "最新優先策略",
+        "priority": 4
+      },
+      "three_way_merge": {
+        "description": "三路合併策略",
+        "priority": 5
+      },
+      "manual": {
+        "description": "手動解決策略",
+        "priority": 6
+      }
+    }
+  },
+
+  "stateStore": {
+    "dataDir": ".claude/data",
+    "maxVersions": 50,
+    "compressionThreshold": 1048576,
+    "cacheMaxSize": 100,
+    "cleanupInterval": 86400000,
+    "maxAge": 2592000000
+  },
+
+  "sources": {
+    "filesystem": {
+      "enabled": true,
+      "priority": 1,
+      "readOnly": false
+    },
+    "ccpm": {
+      "enabled": true,
+      "priority": 2,
+      "readOnly": false
+    },
+    "superclaude": {
+      "enabled": true,
+      "priority": 3,
+      "readOnly": false
+    }
+  },
+
+  "notifications": {
+    "enabled": true,
+    "channels": ["console", "events"],
+    "events": {
+      "syncStarted": true,
+      "syncCompleted": true,
+      "syncFailed": true,
+      "conflictsDetected": true,
+      "conflictsResolved": true,
+      "fileChanged": false,
+      "batchCompleted": false
+    }
+  },
+
+  "security": {
+    "validateSources": true,
+    "allowedSourceTypes": [
+      "filesystem",
+      "ccpm",
+      "superclaude"
+    ],
+    "restrictedPaths": [
+      ".env*",
+      "*.key",
+      "*.cert",
+      "secrets/**/*"
+    ]
+  },
+
+  "debugging": {
+    "enabled": false,
+    "logLevel": "info",
+    "logToFile": false,
+    "logFile": ".claude/logs/sync.log",
+    "traceOperations": false,
+    "profilePerformance": false
+  }
+}

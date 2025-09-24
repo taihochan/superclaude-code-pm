@@ -1,0 +1,556 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "統一命令路由系統配置",
+  "description": "CCPM、SuperClaude和整合命令的完整配置定義",
+  "version": "1.0.0",
+  "lastUpdated": "2025-09-24T00:00:00Z",
+
+  "global": {
+    "router": {
+      "timeout": 30000,
+      "maxConcurrency": 10,
+      "retryAttempts": 3,
+      "retryDelay": 1000,
+      "enableMetrics": true,
+      "enableLogging": true
+    },
+    "parser": {
+      "strict": false,
+      "caseSensitive": true,
+      "allowShorthand": true
+    },
+    "validation": {
+      "validateOnParse": true,
+      "allowPartialValidation": false,
+      "collectAllErrors": true
+    }
+  },
+
+  "namespaces": {
+    "pm": {
+      "description": "CCPM (Claude Code Project Management) 命令",
+      "prefix": "/pm:",
+      "enabled": true,
+      "permissionLevel": 10,
+      "middleware": ["auth.user", "logging.detailed", "validation.strict"]
+    },
+    "sc": {
+      "description": "SuperClaude 框架命令",
+      "prefix": "/sc:",
+      "enabled": true,
+      "permissionLevel": 10,
+      "middleware": ["auth.user", "logging.detailed", "validation.standard"]
+    },
+    "integrated": {
+      "description": "整合系統命令",
+      "prefix": "/integrated:",
+      "enabled": true,
+      "permissionLevel": 0,
+      "middleware": ["auth.public", "logging.basic", "validation.basic"]
+    }
+  },
+
+  "commands": {
+    "pm:epic-start": {
+      "description": "開始一個新的史詩任務",
+      "category": "project-management",
+      "permissionLevel": 50,
+      "timeout": 60000,
+      "parameters": [
+        {
+          "name": "epicName",
+          "type": "string",
+          "required": true,
+          "description": "史詩任務名稱",
+          "validation": {
+            "minLength": 3,
+            "maxLength": 50,
+            "pattern": "^[a-zA-Z0-9\\-_\\s]+$"
+          }
+        }
+      ],
+      "flags": [
+        {
+          "name": "branch",
+          "type": "string",
+          "description": "指定分支名稱",
+          "default": "feature/auto-generated"
+        },
+        {
+          "name": "parallel",
+          "type": "boolean",
+          "description": "是否啟用並行處理",
+          "default": false
+        },
+        {
+          "name": "priority",
+          "type": "enum",
+          "description": "任務優先級",
+          "values": ["low", "normal", "high", "critical"],
+          "default": "normal"
+        }
+      ],
+      "examples": [
+        "/pm:epic-start \"API重構\" --branch=feature/api-refactor --priority=high",
+        "/pm:epic-start UserAuth --parallel"
+      ]
+    },
+
+    "pm:epic-status": {
+      "description": "查看史詩任務狀態",
+      "category": "project-management",
+      "permissionLevel": 10,
+      "parameters": [
+        {
+          "name": "epicId",
+          "type": "string",
+          "required": false,
+          "description": "史詩ID（可選，不提供則顯示所有）"
+        }
+      ],
+      "flags": [
+        {
+          "name": "format",
+          "type": "enum",
+          "values": ["text", "json", "table"],
+          "default": "table",
+          "description": "輸出格式"
+        },
+        {
+          "name": "detailed",
+          "type": "boolean",
+          "default": false,
+          "description": "顯示詳細信息"
+        }
+      ]
+    },
+
+    "pm:issue-start": {
+      "description": "開始處理特定問題",
+      "category": "issue-management",
+      "permissionLevel": 10,
+      "parameters": [
+        {
+          "name": "issueNumber",
+          "type": "integer",
+          "required": true,
+          "description": "GitHub問題編號",
+          "validation": {
+            "min": 1,
+            "max": 99999
+          }
+        }
+      ],
+      "flags": [
+        {
+          "name": "branch",
+          "type": "string",
+          "description": "分支名稱模式",
+          "default": "issue-{number}-{timestamp}"
+        },
+        {
+          "name": "assign",
+          "type": "boolean",
+          "description": "自動指派給當前用戶",
+          "default": true
+        }
+      ]
+    },
+
+    "sc:analyze": {
+      "description": "代碼分析和評估",
+      "category": "code-analysis",
+      "permissionLevel": 10,
+      "parameters": [
+        {
+          "name": "target",
+          "type": "string",
+          "required": false,
+          "description": "分析目標（文件或目錄路徑）",
+          "default": "."
+        }
+      ],
+      "flags": [
+        {
+          "name": "depth",
+          "type": "enum",
+          "values": ["surface", "detailed", "comprehensive"],
+          "default": "detailed",
+          "description": "分析深度"
+        },
+        {
+          "name": "focus",
+          "type": "array",
+          "description": "分析焦點領域",
+          "itemType": "enum",
+          "itemValues": ["performance", "security", "quality", "architecture"],
+          "default": ["quality", "security"]
+        },
+        {
+          "name": "output",
+          "type": "string",
+          "description": "輸出文件路徑（可選）"
+        }
+      ]
+    },
+
+    "sc:implement": {
+      "description": "功能實現和代碼生成",
+      "category": "code-generation",
+      "permissionLevel": 20,
+      "parameters": [
+        {
+          "name": "specification",
+          "type": "string",
+          "required": true,
+          "description": "功能規格描述或PRD路徑"
+        }
+      ],
+      "flags": [
+        {
+          "name": "framework",
+          "type": "enum",
+          "values": ["vue", "react", "angular", "vanilla"],
+          "description": "目標框架"
+        },
+        {
+          "name": "test",
+          "type": "boolean",
+          "default": true,
+          "description": "生成測試代碼"
+        },
+        {
+          "name": "docs",
+          "type": "boolean",
+          "default": true,
+          "description": "生成文檔"
+        }
+      ]
+    },
+
+    "sc:test": {
+      "description": "執行測試和質量檢查",
+      "category": "testing",
+      "permissionLevel": 10,
+      "parameters": [
+        {
+          "name": "testPath",
+          "type": "string",
+          "required": false,
+          "description": "測試路徑或模式",
+          "default": "**/*.test.{js,ts}"
+        }
+      ],
+      "flags": [
+        {
+          "name": "coverage",
+          "type": "boolean",
+          "default": true,
+          "description": "生成覆蓋率報告"
+        },
+        {
+          "name": "watch",
+          "type": "boolean",
+          "default": false,
+          "description": "監視模式"
+        },
+        {
+          "name": "env",
+          "type": "enum",
+          "values": ["test", "development", "production"],
+          "default": "test",
+          "description": "運行環境"
+        }
+      ]
+    },
+
+    "integrated:status": {
+      "description": "顯示系統整合狀態",
+      "category": "system",
+      "permissionLevel": 0,
+      "parameters": [],
+      "flags": [
+        {
+          "name": "format",
+          "type": "enum",
+          "values": ["text", "json", "yaml"],
+          "default": "text",
+          "description": "輸出格式"
+        },
+        {
+          "name": "detailed",
+          "type": "boolean",
+          "default": false,
+          "description": "顯示詳細系統信息"
+        }
+      ]
+    },
+
+    "integrated:help": {
+      "description": "顯示可用命令幫助",
+      "category": "help",
+      "permissionLevel": 0,
+      "parameters": [
+        {
+          "name": "command",
+          "type": "string",
+          "required": false,
+          "description": "特定命令名稱（顯示詳細幫助）"
+        }
+      ],
+      "flags": [
+        {
+          "name": "namespace",
+          "type": "enum",
+          "values": ["pm", "sc", "integrated", "all"],
+          "default": "all",
+          "description": "過濾命名空間"
+        },
+        {
+          "name": "category",
+          "type": "string",
+          "description": "按分類過濾命令"
+        }
+      ]
+    },
+
+    "integrated:config": {
+      "description": "管理系統配置",
+      "category": "configuration",
+      "permissionLevel": 50,
+      "parameters": [
+        {
+          "name": "action",
+          "type": "enum",
+          "values": ["get", "set", "list", "reset"],
+          "required": true,
+          "description": "配置操作"
+        },
+        {
+          "name": "key",
+          "type": "string",
+          "required": false,
+          "description": "配置鍵（用於get/set操作）"
+        },
+        {
+          "name": "value",
+          "type": "string",
+          "required": false,
+          "description": "配置值（用於set操作）"
+        }
+      ],
+      "flags": [
+        {
+          "name": "global",
+          "type": "boolean",
+          "default": false,
+          "description": "全局配置（影響所有命令）"
+        },
+        {
+          "name": "namespace",
+          "type": "enum",
+          "values": ["pm", "sc", "integrated"],
+          "description": "命名空間配置"
+        }
+      ]
+    }
+  },
+
+  "middleware": {
+    "auth": {
+      "public": {
+        "type": "authentication",
+        "requiredLevel": 0,
+        "allowAnonymous": true
+      },
+      "user": {
+        "type": "authentication",
+        "requiredLevel": 10,
+        "allowAnonymous": false
+      },
+      "admin": {
+        "type": "authentication",
+        "requiredLevel": 50,
+        "allowAnonymous": false
+      },
+      "system": {
+        "type": "authentication",
+        "requiredLevel": 100,
+        "allowAnonymous": false
+      }
+    },
+    "logging": {
+      "basic": {
+        "type": "logging",
+        "logLevel": "info",
+        "includeRequestData": false,
+        "includeResponseData": false,
+        "logPerformance": true
+      },
+      "detailed": {
+        "type": "logging",
+        "logLevel": "debug",
+        "includeRequestData": true,
+        "includeResponseData": true,
+        "logPerformance": true
+      },
+      "minimal": {
+        "type": "logging",
+        "logLevel": "warn",
+        "includeRequestData": false,
+        "includeResponseData": false,
+        "logPerformance": false
+      }
+    },
+    "validation": {
+      "strict": {
+        "type": "validation",
+        "validateOnParse": true,
+        "allowPartialValidation": false,
+        "collectAllErrors": true
+      },
+      "standard": {
+        "type": "validation",
+        "validateOnParse": true,
+        "allowPartialValidation": true,
+        "collectAllErrors": true
+      },
+      "basic": {
+        "type": "validation",
+        "validateOnParse": true,
+        "allowPartialValidation": true,
+        "collectAllErrors": false
+      },
+      "disabled": {
+        "type": "validation",
+        "validateOnParse": false
+      }
+    }
+  },
+
+  "aliases": {
+    "status": "integrated:status",
+    "help": "integrated:help",
+    "config": "integrated:config",
+    "epic": "pm:epic-status",
+    "start": "pm:epic-start",
+    "analyze": "sc:analyze",
+    "test": "sc:test"
+  },
+
+  "categories": {
+    "project-management": {
+      "description": "專案管理和組織相關命令",
+      "commands": ["pm:epic-start", "pm:epic-status", "pm:epic-close"]
+    },
+    "issue-management": {
+      "description": "問題和任務管理命令",
+      "commands": ["pm:issue-start", "pm:issue-close", "pm:issue-status"]
+    },
+    "code-analysis": {
+      "description": "代碼分析和質量評估命令",
+      "commands": ["sc:analyze", "sc:review", "sc:audit"]
+    },
+    "code-generation": {
+      "description": "代碼生成和實現命令",
+      "commands": ["sc:implement", "sc:generate", "sc:scaffold"]
+    },
+    "testing": {
+      "description": "測試和質量保證命令",
+      "commands": ["sc:test", "sc:coverage", "sc:benchmark"]
+    },
+    "system": {
+      "description": "系統管理和監控命令",
+      "commands": ["integrated:status", "integrated:metrics", "integrated:health"]
+    },
+    "help": {
+      "description": "幫助和文檔相關命令",
+      "commands": ["integrated:help", "integrated:docs", "integrated:examples"]
+    },
+    "configuration": {
+      "description": "配置和設置管理命令",
+      "commands": ["integrated:config", "integrated:setup", "integrated:reset"]
+    }
+  },
+
+  "validation": {
+    "commonSchemas": {
+      "filePath": {
+        "type": "string",
+        "pattern": "^[^\\s<>:\"|?*]+$",
+        "minLength": 1,
+        "maxLength": 260
+      },
+      "port": {
+        "type": "integer",
+        "min": 1,
+        "max": 65535
+      },
+      "timeout": {
+        "type": "integer",
+        "min": 0,
+        "max": 300000
+      },
+      "logLevel": {
+        "type": "enum",
+        "values": ["trace", "debug", "info", "warn", "error", "fatal"]
+      },
+      "outputFormat": {
+        "type": "enum",
+        "values": ["json", "yaml", "text", "table", "csv"]
+      }
+    }
+  },
+
+  "examples": {
+    "basic": [
+      {
+        "command": "/integrated:help",
+        "description": "顯示所有可用命令"
+      },
+      {
+        "command": "/integrated:status --detailed",
+        "description": "顯示詳細的系統狀態"
+      }
+    ],
+    "ccpm": [
+      {
+        "command": "/pm:epic-start \"新功能開發\" --branch=feature/new-feature --priority=high",
+        "description": "開始一個高優先級的新功能史詩"
+      },
+      {
+        "command": "/pm:issue-start 123 --assign",
+        "description": "開始處理問題#123並自動指派"
+      }
+    ],
+    "superclaude": [
+      {
+        "command": "/sc:analyze src/ --depth=comprehensive --focus=[\"security\",\"performance\"]",
+        "description": "對src目錄進行全面的安全和性能分析"
+      },
+      {
+        "command": "/sc:implement docs/api-spec.md --framework=vue --test --docs",
+        "description": "根據API規格實現Vue組件，包含測試和文檔"
+      }
+    ]
+  },
+
+  "metadata": {
+    "totalCommands": 8,
+    "totalNamespaces": 3,
+    "supportedFeatures": [
+      "parameter-validation",
+      "flag-validation",
+      "middleware-support",
+      "authentication",
+      "logging",
+      "performance-monitoring",
+      "error-handling",
+      "command-aliases",
+      "help-system",
+      "configuration-management"
+    ],
+    "version": "1.0.0",
+    "compatibilityLevel": "ccpm-1.0,superclaude-1.0"
+  }
+}

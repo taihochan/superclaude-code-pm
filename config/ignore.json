@@ -1,0 +1,287 @@
+{
+  "version": "1.0.0",
+  "description": "狀態同步忽略規則配置",
+  "lastUpdated": "2025-09-24T11:39:22Z",
+
+  "global": {
+    "enabled": true,
+    "description": "全域忽略規則，適用於所有同步操作"
+  },
+
+  "patterns": {
+    "system": {
+      "description": "系統文件和目錄",
+      "enabled": true,
+      "rules": [
+        "node_modules/**",
+        ".git/**",
+        ".svn/**",
+        ".hg/**",
+        "dist/**",
+        "build/**",
+        "coverage/**",
+        ".nyc_output/**"
+      ]
+    },
+
+    "temporary": {
+      "description": "臨時文件和快取",
+      "enabled": true,
+      "rules": [
+        "*.tmp",
+        "*.temp",
+        "*.cache",
+        "*.swp",
+        "*.swo",
+        "*~",
+        ".DS_Store",
+        "Thumbs.db",
+        "desktop.ini"
+      ]
+    },
+
+    "logs": {
+      "description": "日誌文件",
+      "enabled": true,
+      "rules": [
+        "*.log",
+        "*.log.*",
+        "logs/**",
+        "log/**",
+        ".claude/logs/**"
+      ]
+    },
+
+    "security": {
+      "description": "安全敏感文件",
+      "enabled": true,
+      "rules": [
+        ".env*",
+        "*.key",
+        "*.pem",
+        "*.cert",
+        "*.crt",
+        "*.p12",
+        "*.pfx",
+        "secrets/**",
+        "private/**",
+        "credentials/**"
+      ]
+    },
+
+    "ide": {
+      "description": "IDE和編輯器配置",
+      "enabled": true,
+      "rules": [
+        ".vscode/**",
+        ".idea/**",
+        "*.sublime-*",
+        ".atom/**",
+        ".brackets.json"
+      ]
+    },
+
+    "backup": {
+      "description": "備份文件",
+      "enabled": true,
+      "rules": [
+        "*.backup",
+        "*.bak",
+        "*.orig",
+        "*.rej",
+        "backup/**",
+        "backups/**"
+      ]
+    },
+
+    "development": {
+      "description": "開發相關",
+      "enabled": true,
+      "rules": [
+        "*.dev",
+        "*.development",
+        "*.debug",
+        "debug/**",
+        "test-output/**",
+        ".test-results/**"
+      ]
+    }
+  },
+
+  "fileTypes": {
+    "binary": {
+      "description": "二進位文件類型",
+      "enabled": true,
+      "extensions": [
+        ".exe",
+        ".dll",
+        ".so",
+        ".dylib",
+        ".zip",
+        ".tar",
+        ".gz",
+        ".7z",
+        ".rar",
+        ".pdf",
+        ".doc",
+        ".docx",
+        ".xls",
+        ".xlsx",
+        ".ppt",
+        ".pptx"
+      ]
+    },
+
+    "media": {
+      "description": "媒體文件",
+      "enabled": true,
+      "extensions": [
+        ".jpg",
+        ".jpeg",
+        ".png",
+        ".gif",
+        ".bmp",
+        ".svg",
+        ".ico",
+        ".mp3",
+        ".mp4",
+        ".avi",
+        ".mov",
+        ".wmv",
+        ".flv",
+        ".webm"
+      ]
+    },
+
+    "fonts": {
+      "description": "字體文件",
+      "enabled": true,
+      "extensions": [
+        ".ttf",
+        ".otf",
+        ".woff",
+        ".woff2",
+        ".eot"
+      ]
+    }
+  },
+
+  "sizeLimit": {
+    "enabled": true,
+    "description": "檔案大小限制",
+    "maxSize": 10485760,
+    "checkBinary": true,
+    "warningSize": 1048576
+  },
+
+  "pathPatterns": {
+    "deep": {
+      "description": "過深的目錄結構",
+      "enabled": true,
+      "maxDepth": 10,
+      "patterns": [
+        "**/node_modules/**/node_modules/**",
+        "**/vendor/**/vendor/**"
+      ]
+    },
+
+    "circular": {
+      "description": "可能的循環引用",
+      "enabled": true,
+      "patterns": [
+        "**/symlink-*/**",
+        "**/link-*/**"
+      ]
+    }
+  },
+
+  "syncMode": {
+    "immediate": {
+      "description": "即時同步特殊忽略",
+      "additionalPatterns": [
+        "*.processing",
+        "*.syncing"
+      ]
+    },
+
+    "batch": {
+      "description": "批量同步特殊忽略",
+      "additionalPatterns": [
+        "*.batch-temp"
+      ]
+    },
+
+    "scheduled": {
+      "description": "定時同步特殊忽略",
+      "additionalPatterns": [
+        "*.scheduled-temp"
+      ]
+    },
+
+    "manual": {
+      "description": "手動同步特殊忽略",
+      "additionalPatterns": []
+    }
+  },
+
+  "customRules": {
+    "project": {
+      "description": "項目特定忽略規則",
+      "enabled": true,
+      "patterns": [
+        "crypto-trading-bot-specific-temp/**",
+        "*.trading-temp",
+        "market-data-cache/**",
+        "ai-model-cache/**"
+      ]
+    },
+
+    "testing": {
+      "description": "測試相關忽略",
+      "enabled": true,
+      "patterns": [
+        "test-fixtures/**",
+        "mock-data/**",
+        "*.test-output",
+        "coverage-reports/**"
+      ]
+    }
+  },
+
+  "exceptions": {
+    "description": "忽略規則的例外情況",
+    "enabled": true,
+    "rules": [
+      {
+        "pattern": ".env.example",
+        "reason": "環境變數範本文件需要同步",
+        "override": true
+      },
+      {
+        "pattern": ".gitignore",
+        "reason": "Git忽略規則需要同步",
+        "override": true
+      },
+      {
+        "pattern": ".claude/config/**",
+        "reason": "Claude配置文件必須同步",
+        "override": true
+      }
+    ]
+  },
+
+  "validation": {
+    "enabled": true,
+    "strict": false,
+    "warnOnLargeFiles": true,
+    "warnOnBinaryFiles": true,
+    "warnOnSensitiveFiles": true
+  },
+
+  "performance": {
+    "cacheRules": true,
+    "precompileRegex": true,
+    "maxRulesPerCheck": 100,
+    "timeoutMs": 1000
+  }
+}

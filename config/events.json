@@ -1,0 +1,206 @@
+{
+  "eventBus": {
+    "enabled": true,
+    "maxConcurrentEvents": 1000,
+    "enablePersistence": true,
+    "enableMiddleware": true,
+    "enableBatching": false,
+    "performance": {
+      "targetLatency": 50,
+      "maxLatency": 200,
+      "throughputTarget": 1000
+    }
+  },
+  "storage": {
+    "storePath": ".claude/data/events",
+    "maxFileSize": 52428800,
+    "maxFiles": 100,
+    "indexingEnabled": true,
+    "compressionEnabled": true,
+    "retentionDays": 30,
+    "cleanupInterval": "24h"
+  },
+  "serialization": {
+    "enableCompression": true,
+    "enableEncryption": false,
+    "encryptionKey": null,
+    "maxDepth": 10,
+    "includeMetadata": true
+  },
+  "middleware": {
+    "enablePerformanceMonitoring": true,
+    "enableErrorHandling": true,
+    "defaultRetryAttempts": 3,
+    "slowThreshold": 1000,
+    "validation": {
+      "enabled": true,
+      "requiredFields": ["type", "timestamp", "data", "source"],
+      "allowedTypes": null,
+      "customValidators": []
+    },
+    "filtering": {
+      "enabled": false,
+      "filters": [],
+      "mode": "all"
+    },
+    "transformation": {
+      "enabled": false,
+      "transformers": [],
+      "preserveOriginal": false
+    },
+    "errorHandling": {
+      "retryAttempts": 3,
+      "retryDelay": 1000,
+      "retryableErrors": []
+    },
+    "performance": {
+      "slowThreshold": 1000,
+      "logSlow": true,
+      "trackMetrics": true
+    }
+  },
+  "batching": {
+    "batchSize": 100,
+    "batchTimeout": 1000,
+    "enabled": false
+  },
+  "eventTypes": {
+    "system": {
+      "enabled": true,
+      "persistence": true,
+      "priority": 1,
+      "retention": "30d"
+    },
+    "ccpm": {
+      "enabled": true,
+      "persistence": true,
+      "priority": 1,
+      "retention": "90d"
+    },
+    "superclaude": {
+      "enabled": true,
+      "persistence": true,
+      "priority": 1,
+      "retention": "90d"
+    }
+  },
+  "integration": {
+    "commandRouter": {
+      "enabled": true,
+      "autoPublishEvents": true,
+      "eventTypes": [
+        "SYSTEM_COMMAND_EXECUTED",
+        "SYSTEM_COMMAND_FAILED",
+        "SC_COMMAND_ROUTED",
+        "SC_COMMAND_ORCHESTRATED"
+      ]
+    },
+    "crossSystem": {
+      "enabled": true,
+      "ccpmToSuperclaude": {
+        "eventTypes": [
+          "CCPM_PROJECT_INITIALIZED",
+          "CCPM_CODE_GENERATED",
+          "CCPM_BUILD_COMPLETED"
+        ],
+        "mapping": {
+          "CCPM_PROJECT_INITIALIZED": "SC_CONTEXT_LOADED",
+          "CCPM_CODE_GENERATED": "SC_ANALYSIS_STARTED",
+          "CCPM_BUILD_COMPLETED": "SC_TASK_COMPLETED"
+        }
+      },
+      "superclaudeToCcpm": {
+        "eventTypes": [
+          "SC_WORKFLOW_COMPLETED",
+          "SC_ANALYSIS_COMPLETED",
+          "SC_AGENT_COMPLETED"
+        ],
+        "mapping": {
+          "SC_WORKFLOW_COMPLETED": "CCPM_WORKFLOW_COMPLETED",
+          "SC_ANALYSIS_COMPLETED": "CCPM_CODE_GENERATION_STARTED",
+          "SC_AGENT_COMPLETED": "CCPM_EXTERNAL_TOOL_INVOKED"
+        }
+      }
+    }
+  },
+  "monitoring": {
+    "metrics": {
+      "enabled": true,
+      "collectInterval": "1m",
+      "retentionPeriod": "7d"
+    },
+    "alerts": {
+      "enabled": true,
+      "rules": [
+        {
+          "name": "high_error_rate",
+          "condition": "error_rate > 0.05",
+          "severity": "warning",
+          "actions": ["log", "emit_event"]
+        },
+        {
+          "name": "high_latency",
+          "condition": "average_latency > 100",
+          "severity": "warning",
+          "actions": ["log"]
+        },
+        {
+          "name": "memory_usage_high",
+          "condition": "memory_usage > 0.8",
+          "severity": "critical",
+          "actions": ["log", "emit_event", "cleanup"]
+        },
+        {
+          "name": "storage_full",
+          "condition": "storage_usage > 0.9",
+          "severity": "critical",
+          "actions": ["log", "emit_event", "cleanup"]
+        }
+      ]
+    },
+    "health": {
+      "checkInterval": "30s",
+      "healthChecks": [
+        "eventBus",
+        "eventStore",
+        "serializer",
+        "middleware"
+      ]
+    }
+  },
+  "debug": {
+    "enabled": false,
+    "logLevel": "info",
+    "logEvents": false,
+    "logPerformance": false,
+    "verboseErrors": false
+  },
+  "replay": {
+    "enabled": true,
+    "maxConcurrentReplays": 5,
+    "defaultSpeed": 1.0,
+    "bufferSize": 1000
+  },
+  "security": {
+    "eventValidation": true,
+    "sourceValidation": true,
+    "allowedSources": [
+      "system",
+      "ccpm",
+      "superclaude",
+      "commandRouter",
+      "eventBus"
+    ],
+    "encryption": {
+      "enabled": false,
+      "algorithm": "aes-256-gcm",
+      "keyRotationInterval": "30d"
+    }
+  },
+  "version": "1.0.0",
+  "schema": {
+    "version": "1.0.0",
+    "compatibleVersions": ["1.0.0"],
+    "migrationScripts": []
+  }
+}

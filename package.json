@@ -1,0 +1,55 @@
+{
+  "name": "superclaude-code-pm",
+  "version": "1.0.0",
+  "description": "CCPM+SuperClaude整合框架 - 智能項目管理與代碼分析整合平台",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "install-all": "npm run install-ccpm && npm run install-superclaude && npm run setup-framework",
+    "install-ccpm": "node scripts/install-ccpm.js",
+    "install-superclaude": "node scripts/install-superclaude.js",
+    "setup-framework": "node scripts/setup-framework.js",
+    "start": "node index.js",
+    "test": "node test/run-all-tests.js",
+    "validate": "node scripts/validate-installation.js",
+    "demo": "node examples/demo.js",
+    "docs": "node scripts/generate-docs.js"
+  },
+  "keywords": [
+    "ccpm",
+    "superclaude",
+    "claude-code",
+    "project-management",
+    "code-analysis",
+    "ai-integration",
+    "automation"
+  ],
+  "author": "SuperClaude Framework Team",
+  "license": "MIT",
+  "dependencies": {
+    "node-fetch": "^3.3.2",
+    "chalk": "^5.3.0",
+    "commander": "^11.1.0",
+    "inquirer": "^9.2.12",
+    "yaml": "^2.3.4",
+    "chokidar": "^3.5.3",
+    "crypto": "^1.0.1",
+    "path": "^0.12.7",
+    "fs-extra": "^11.1.1"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "eslint": "^8.55.0"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yourusername/superclaude-code-pm.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/superclaude-code-pm/issues"
+  },
+  "homepage": "https://github.com/yourusername/superclaude-code-pm#readme"
+}
