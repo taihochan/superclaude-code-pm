@@ -236,9 +236,19 @@ node scripts/health-check.js
 
 適合需要保持框架獨立更新的場景：
 
+**⚠️ 前提條件：您的專案必須是 Git 倉庫**
+
 ```bash
 # 在您的既有專案根目錄下
 cd your-existing-project
+
+# 如果還不是 Git 倉庫，先初始化（可選）
+# git init
+# git add .
+# git commit -m "Initial commit"
+
+# 確認是 Git 倉庫
+git status
 
 # 添加 SuperClaude Code PM 作為子模塊
 git submodule add https://github.com/taihochan/superclaude-code-pm.git .superclaude-pm
@@ -253,7 +263,13 @@ npm run validate
 
 # 回到主專案
 cd ..
+
+# 提交子模塊變更
+git add .gitmodules .superclaude-pm
+git commit -m "Add SuperClaude Code PM submodule"
 ```
+
+**如果您的專案不是 Git 倉庫，請使用方式二「無 Git 衝突整合」**
 
 #### 方式二：無 Git 衝突整合
 
