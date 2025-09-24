@@ -226,6 +226,322 @@ node scripts/health-check.js
 /integrated:export --format json,pdf --destination ./output
 ```
 
+## 🔗 既有專案整合指南
+
+將 SuperClaude Code PM 整合到您現有專案中，實現智能協作開發。
+
+### 🎯 整合方式
+
+#### 方式一：Git 子模塊整合（推薦）
+
+適合需要保持框架獨立更新的場景：
+
+```bash
+# 在您的既有專案根目錄下
+cd your-existing-project
+
+# 添加 SuperClaude Code PM 作為子模塊
+git submodule add https://github.com/taihochan/superclaude-code-pm.git .superclaude-pm
+
+# 初始化子模塊
+git submodule update --init --recursive
+
+# 進入子模塊目錄安裝
+cd .superclaude-pm
+npm run install-all
+npm run validate
+
+# 回到主專案
+cd ..
+```
+
+#### 方式二：直接複製整合
+
+適合需要自訂框架的場景：
+
+```bash
+# 克隆到臨時目錄
+git clone https://github.com/taihochan/superclaude-code-pm.git temp-superclaude
+
+# 複製框架到您的專案
+cp -r temp-superclaude/framework your-existing-project/.superclaude/
+cp -r temp-superclaude/config your-existing-project/.superclaude/
+cp temp-superclaude/package.json your-existing-project/.superclaude/
+
+# 清理臨時目錄
+rm -rf temp-superclaude
+
+# 在專案中安裝依賴
+cd your-existing-project/.superclaude
+npm install
+```
+
+### 🛠️ Claude Code 協作配置
+
+#### 1. 創建專案級 CLAUDE.md
+
+在您的既有專案根目錄創建或更新 `CLAUDE.md`：
+
+```markdown
+# Your Existing Project + SuperClaude Code PM Integration
+
+## SuperClaude PM Commands
+
+# 載入 SuperClaude Code PM 框架
+@.superclaude-pm/README.md
+
+# 啟用 CCPM 項目管理
+- 使用 /pm:prd-new 創建新需求文檔
+- 使用 /pm:epic-decompose 分解大任務
+- 使用 /pm:epic-start 啟動並行開發
+
+# 啟用 SuperClaude 分析
+- 使用 /sc:analyze 進行代碼分析
+- 使用 /sc:business-panel 商業分析
+- 使用 /sc:workflow 工作流優化
+
+# 整合命令
+- 使用 /integrated:status 查看整體狀態
+- 使用 /integrated:parallel 啟動並行協作
+- 使用 /integrated:report 生成綜合報告
+
+## Project-Specific Configuration
+
+根據您的專案特性調整：
+- 開發框架：[Vue.js, React, etc.]
+- 專案類型：[Web App, API, Mobile, etc.]
+- 業務領域：[Crypto Trading, E-commerce, etc.]
+- 團隊規模：[Solo, Small Team, Large Team]
+
+## Integration Settings
+
+```json
+{
+  "superclaude": {
+    "enabled": true,
+    "projectType": "your-project-type",
+    "primaryMode": "development",
+    "features": {
+      "ccpm": true,
+      "businessPanel": true,
+      "parallelExecution": true,
+      "resultIntegration": true
+    }
+  }
+}
+```
+```
+
+#### 2. 配置專案整合設置
+
+創建 `your-project/.superclaude-pm/config/project-integration.json`：
+
+```json
+{
+  "project": {
+    "name": "Your Existing Project",
+    "type": "web-application",
+    "framework": "vue.js",
+    "domain": "your-business-domain"
+  },
+  "integration": {
+    "enabled": true,
+    "autoStart": false,
+    "workingDirectory": "../",
+    "excludePatterns": [
+      "node_modules/**",
+      "dist/**",
+      ".git/**",
+      ".superclaude-pm/**"
+    ]
+  },
+  "claude": {
+    "contextPaths": [
+      "README.md",
+      "package.json",
+      "src/**/*.vue",
+      "src/**/*.js"
+    ],
+    "customCommands": {
+      "project-analyze": "/integrated:analyze --project ../ --focus architecture",
+      "project-review": "/sc:business-panel --project ../docs/requirements.md",
+      "project-tasks": "/pm:epic-list --filter active"
+    }
+  }
+}
+```
+
+### 🚀 Claude Code 中的使用流程
+
+#### 第一步：啟動整合模式
+
+```bash
+# 在 Claude Code 中，切換到您的專案目錄
+cd your-existing-project
+
+# 啟動 SuperClaude PM 整合
+./.superclaude-pm/index.js
+
+# 或者使用集成命令
+/integrated:status
+```
+
+#### 第二步：項目管理協作
+
+```bash
+# 創建項目需求文檔
+/pm:prd-new "新功能開發需求"
+
+# 自動分解為可執行任務
+/pm:epic-decompose
+
+# 啟動並行開發（多 Agent 協作）
+/pm:epic-start --parallel --max-agents 5
+```
+
+#### 第三步：智能分析與優化
+
+```bash
+# 分析現有代碼架構
+/sc:analyze --focus architecture --depth comprehensive
+
+# 商業邏輯分析（如果是商業項目）
+/sc:business-panel --mode discussion --experts "porter,collins,drucker"
+
+# 工作流程優化建議
+/sc:workflow --analyze-bottlenecks --suggest-improvements
+```
+
+#### 第四步：整合結果與報告
+
+```bash
+# 查看整合狀態
+/integrated:status
+
+# 生成綜合分析報告
+/integrated:report --include analysis,tasks,recommendations
+
+# 導出結果到專案目錄
+/integrated:export --destination ./superclaude-reports/
+```
+
+### 🔧 實際應用場景
+
+#### 場景一：大型功能開發
+
+```bash
+# 1. 需求分析和任務分解
+/pm:prd-new "用戶認證系統重構"
+/pm:epic-decompose --auto-assign
+
+# 2. 並行開發協調
+/pm:epic-start --strategy balanced --agents 8
+
+# 3. 代碼質量保證
+/sc:analyze --focus security,performance --continuous
+
+# 4. 進度跟蹤和報告
+/integrated:monitor --dashboard --export-daily
+```
+
+#### 場景二：代碼重構項目
+
+```bash
+# 1. 現狀分析
+/sc:analyze --comprehensive --identify-debt
+
+# 2. 重構策略制定
+/sc:business-panel --focus "technical-strategy" --mode debate
+
+# 3. 分階段執行
+/pm:prd-parse "重構執行計劃" --auto-phase
+
+# 4. 質量驗證
+/integrated:validate --before-after-comparison
+```
+
+#### 場景三：新團隊成員協作
+
+```bash
+# 1. 項目了解
+/integrated:analyze --onboarding-report
+
+# 2. 工作分配
+/pm:epic-list --available --skill-match "frontend"
+
+# 3. 協作指導
+/sc:workflow --mentoring-mode --pair-programming
+
+# 4. 進度同步
+/integrated:sync --team-status --daily-standup
+```
+
+### 🎯 最佳實踐
+
+#### 1. 漸進式整合
+
+```bash
+# 第一階段：基礎整合
+- 安裝框架並驗證
+- 配置基本的專案設置
+- 測試核心命令功能
+
+# 第二階段：工作流程整合
+- 將現有任務遷移到 CCPM
+- 設定並行開發流程
+- 建立代碼分析例行程序
+
+# 第三階段：深度優化
+- 自訂商業分析模式
+- 優化 Agent 協作策略
+- 建立自動化報告流程
+```
+
+#### 2. 團隊協作配置
+
+```json
+{
+  "team": {
+    "size": "medium",
+    "roles": ["frontend", "backend", "devops", "product"],
+    "collaboration": {
+      "standupIntegration": true,
+      "taskAssignment": "auto",
+      "codeReviewIntegration": true
+    }
+  }
+}
+```
+
+#### 3. 性能優化建議
+
+- **並行度控制**：根據機器性能調整 `maxConcurrentAgents`（建議 4-8）
+- **記憶體管理**：設定適當的 `maxMemoryUsage`（建議 512MB-1GB）
+- **緩存策略**：啟用 `enableSmartCaching` 提升響應速度
+- **日誌等級**：生產環境使用 `info`，開發環境使用 `debug`
+
+### 🔍 故障排除
+
+#### 常見整合問題
+
+1. **路徑衝突**：確保 `.superclaude-pm` 目錄不與專案文件衝突
+2. **依賴衝突**：檢查 Node.js 版本兼容性（需要 >= 16.0.0）
+3. **權限問題**：確保有寫入 logs/ 和 config/ 目錄的權限
+4. **網絡問題**：確保能正常訪問 GitHub 下載 CCPM 和 SuperClaude
+
+#### 調試模式
+
+```bash
+# 啟用詳細日誌
+DEBUG=true /integrated:status
+
+# 檢查組件連接狀態
+/integrated:health-check --verbose
+
+# 重置配置（如果配置損壞）
+npm run setup-framework --reset
+```
+
 ## 🏗️ 架構概覽
 
 系統採用 4 層架構設計：
