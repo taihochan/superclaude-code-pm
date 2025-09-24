@@ -14,7 +14,7 @@
  * 配合：接收DataFusion和ConflictDetector結果，為ReportGenerator提供洞察內容
  */
 
-const { EventEmitter } = require('events');
+import { EventEmitter } from 'events';
 
 // 洞察類型定義
 const INSIGHT_TYPES = {

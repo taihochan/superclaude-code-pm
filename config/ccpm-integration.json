@@ -1,0 +1,19 @@
+{
+  "ccpm": {
+    "installed": true,
+    "path": "./ccpm",
+    "version": "1.0.0",
+    "commands": [
+      "pm:help",
+      "pm:status",
+      "pm:epic-list",
+      "pm:prd-list",
+      "pm:prd-new",
+      "pm:prd-parse",
+      "pm:epic-decompose",
+      "pm:epic-sync",
+      "pm:epic-start"
+    ],
+    "integrationStatus": "ready"
+  }
+}

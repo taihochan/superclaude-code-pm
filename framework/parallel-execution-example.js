@@ -9,7 +9,7 @@
  * - 完整的項目開發流程模擬
  */
 
-const ParallelExecutor = require('./ParallelExecutor');
+import ParallelExecutor from './ParallelExecutor';
 
 /**
  * 場景1: 代碼分析和重構項目

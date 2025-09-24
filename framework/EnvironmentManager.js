@@ -12,13 +12,13 @@
  * 配合：ConfigManager進行環境配置的存儲和同步
  */
 
-const { EventEmitter } = require('events');
-const fs = require('fs').promises;
-const path = require('path');
-const crypto = require('crypto');
+import { EventEmitter } from 'events';
+import fs from 'fs'.promises;
+import path from 'path';
+import crypto from 'crypto';
 
-const ConfigManager = require('./ConfigManager');
-const EventBus = require('./EventBus');
+import ConfigManager from './ConfigManager';
+import EventBus from './EventBus';
 
 /**
  * 環境類型
@@ -1412,4 +1412,4 @@ EnvironmentManager.CONFIG_PRIORITY = CONFIG_PRIORITY;
 EnvironmentManager.VARIABLE_TYPES = VARIABLE_TYPES;
 EnvironmentManager.ENCRYPTION_METHODS = ENCRYPTION_METHODS;
 
-module.exports = EnvironmentManager;
+export default EnvironmentManager;

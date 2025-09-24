@@ -12,9 +12,9 @@
  * 配合：與StateSynchronizer、FileWatcher協作進行狀態管理
  */
 
-const fs = require('fs').promises;
-const path = require('path');
-const crypto = require('crypto');
+import fs from 'fs'.promises;
+import path from 'path';
+import crypto from 'crypto';
 
 /**
  * 狀態類型定義
@@ -561,4 +561,4 @@ class StateStore {
 // 導出狀態類型常數
 StateStore.STATE_TYPES = STATE_TYPES;
 
-module.exports = StateStore;
+export default StateStore;

@@ -11,7 +11,7 @@
  * 配合：與StateSynchronizer配合實現即時響應
  */
 
-const { EventEmitter } = require('events');
+import { EventEmitter } from 'events';
 
 /**
  * 即時同步策略
@@ -345,4 +345,4 @@ class ImmediateSync extends EventEmitter {
     }
 }
 
-module.exports = ImmediateSync;
+export default ImmediateSync;

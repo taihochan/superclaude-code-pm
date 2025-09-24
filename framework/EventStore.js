@@ -10,10 +10,10 @@
  * 用途：為EventBus提供可靠的事件持久化和查詢服務
  */
 
-const fs = require('fs').promises;
-const path = require('path');
-const EventEmitter = require('events');
-const EventSerializer = require('./EventSerializer');
+import fs from 'fs'.promises;
+import path from 'path';
+import EventEmitter from 'events';
+import EventSerializer from './EventSerializer';
 
 class EventStore extends EventEmitter {
     constructor(options = {}) {
@@ -644,4 +644,4 @@ class EventStore extends EventEmitter {
     }
 }
 
-module.exports = EventStore;
+export default EventStore;

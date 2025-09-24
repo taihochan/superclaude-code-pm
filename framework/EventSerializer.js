@@ -10,8 +10,8 @@
  * 用途：在EventBus和EventStore中處理事件數據的序列化需求
  */
 
-const crypto = require('crypto');
-const zlib = require('zlib');
+import crypto from 'crypto';
+import zlib from 'zlib';
 
 class EventSerializer {
     constructor(options = {}) {
@@ -301,4 +301,4 @@ class EventSerializer {
     }
 }
 
-module.exports = EventSerializer;
+export default EventSerializer;

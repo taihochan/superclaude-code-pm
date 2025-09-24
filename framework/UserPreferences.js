@@ -12,9 +12,9 @@
  * 配合：ConfigManager進行偏好存儲和同步
  */
 
-const { EventEmitter } = require('events');
-const path = require('path');
-const ConfigManager = require('./ConfigManager');
+import { EventEmitter } from 'events';
+import path from 'path';
+import ConfigManager from './ConfigManager';
 
 /**
  * 偏好類型定義
@@ -1153,4 +1153,4 @@ UserPreferences.PREFERENCE_TYPES = PREFERENCE_TYPES;
 UserPreferences.PREFERENCE_SCOPES = PREFERENCE_SCOPES;
 UserPreferences.PREFERENCE_PRIORITY = PREFERENCE_PRIORITY;
 
-module.exports = UserPreferences;
+export default UserPreferences;

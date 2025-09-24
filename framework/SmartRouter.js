@@ -11,10 +11,10 @@
  * 配合：基於CommandRouter、EventBus、StateSynchronizer構建
  */
 
-const EventEmitter = require('events');
-const CommandRouter = require('./CommandRouter');
-const EventBus = require('./EventBus');
-const StateSynchronizer = require('./StateSynchronizer');
+import EventEmitter from 'events';
+import CommandRouter from './CommandRouter';
+import EventBus from './EventBus';
+import StateSynchronizer from './StateSynchronizer';
 
 // 智能路由錯誤類型
 class SmartRouterError extends Error {
@@ -1160,4 +1160,4 @@ SmartRouter.ROUTING_STRATEGIES = ROUTING_STRATEGIES;
 SmartRouter.COMPLEXITY_LEVELS = COMPLEXITY_LEVELS;
 SmartRouter.SmartRouterError = SmartRouterError;
 
-module.exports = SmartRouter;
+export default SmartRouter;

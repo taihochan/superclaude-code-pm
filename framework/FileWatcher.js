@@ -11,11 +11,11 @@
  * 配合：與StateSynchronizer配合進行即時狀態同步
  */
 
-const fs = require('fs').promises;
-const fsSync = require('fs');
-const path = require('path');
-const { EventEmitter } = require('events');
-const crypto = require('crypto');
+import fs from 'fs'.promises;
+import fsSync from 'fs';
+import path from 'path';
+import { EventEmitter } from 'events';
+import crypto from 'crypto';
 
 /**
  * 變化事件類型
@@ -447,4 +447,4 @@ class FileWatcher extends EventEmitter {
 // 導出變化類型常數
 FileWatcher.CHANGE_TYPES = CHANGE_TYPES;
 
-module.exports = FileWatcher;
+export default FileWatcher;

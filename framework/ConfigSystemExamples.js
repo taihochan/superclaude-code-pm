@@ -8,7 +8,7 @@
  * @version 1.0.0
  */
 
-const ConfigSystemIntegration = require('./ConfigSystemIntegration');
+import ConfigSystemIntegration from './ConfigSystemIntegration';
 
 // ==================== 基礎使用示例 ====================
 

@@ -18,17 +18,17 @@
  * @version 1.0.0
  */
 
-const EventEmitter = require('events');
+import EventEmitter from 'events';
 
 // 導入所有配置管理組件
-const ConfigManager = require('./ConfigManager');
-const UserPreferences = require('./UserPreferences');
-const TemplateManager = require('./TemplateManager');
-const EnvironmentManager = require('./EnvironmentManager');
-const ConfigHotReload = require('./ConfigHotReload');
-const ConfigValidator = require('./ConfigValidator');
-const ConfigImportExport = require('./ConfigImportExport');
-const ConfigPerformanceOptimizer = require('./ConfigPerformanceOptimizer');
+import ConfigManager from './ConfigManager';
+import UserPreferences from './UserPreferences';
+import TemplateManager from './TemplateManager';
+import EnvironmentManager from './EnvironmentManager';
+import ConfigHotReload from './ConfigHotReload';
+import ConfigValidator from './ConfigValidator';
+import ConfigImportExport from './ConfigImportExport';
+import ConfigPerformanceOptimizer from './ConfigPerformanceOptimizer';
 
 /**
  * 統一配置管理系統整合類
@@ -694,4 +694,4 @@ class ConfigSystemIntegration extends EventEmitter {
     }
 }
 
-module.exports = ConfigSystemIntegration;
+export default ConfigSystemIntegration;

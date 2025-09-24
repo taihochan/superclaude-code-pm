@@ -12,7 +12,7 @@
  * 配合：ErrorHandler錯誤處理、HealthMonitor健康監控
  */
 
-const { EventEmitter } = require('events');
+import { EventEmitter } from 'events';
 
 /**
  * 熔斷器狀態
@@ -916,4 +916,4 @@ CircuitBreaker.TRIP_STRATEGIES = TRIP_STRATEGIES;
 CircuitBreaker.RECOVERY_STRATEGIES = RECOVERY_STRATEGIES;
 CircuitBreaker.CircuitBreakerInstance = CircuitBreakerInstance;
 
-module.exports = CircuitBreaker;
+export default CircuitBreaker;

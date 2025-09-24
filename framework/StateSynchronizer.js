@@ -11,13 +11,14 @@
  * 配合：整合StateStore、FileWatcher、ConflictResolver
  */
 
-const { EventEmitter } = require('events');
-const fs = require('fs').promises;
-const path = require('path');
+import { EventEmitter } from 'events';
+import fs from 'fs/promises';
+import path from 'path';
+import crypto from 'crypto';
 
-const StateStore = require('./StateStore');
-const FileWatcher = require('./FileWatcher');
-const ConflictResolver = require('./ConflictResolver');
+import StateStore from './StateStore';
+import FileWatcher from './FileWatcher';
+import ConflictResolver from './ConflictResolver';
 
 /**
  * 同步狀態
@@ -803,7 +804,6 @@ class StateSynchronizer extends EventEmitter {
      * 計算檔案哈希
      */
     _calculateFileHash(content) {
-        const crypto = require('crypto');
         return crypto.createHash('sha256').update(content).digest('hex');
     }
 
@@ -886,4 +886,4 @@ StateSynchronizer.SYNC_STATUS = SYNC_STATUS;
 StateSynchronizer.SYNC_MODES = SYNC_MODES;
 StateSynchronizer.SYNC_SOURCES = SYNC_SOURCES;
 
-module.exports = StateSynchronizer;
+export default StateSynchronizer;

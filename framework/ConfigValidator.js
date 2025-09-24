@@ -12,7 +12,7 @@
  * 配合：ConfigManager進行配置驗證和錯誤處理
  */
 
-const { EventEmitter } = require('events');
+import { EventEmitter } from 'events';
 
 /**
  * 驗證規則類型
@@ -1144,7 +1144,7 @@ class ConfigValidator extends EventEmitter {
      * 生成數據哈希
      */
     _generateDataHash(data) {
-        const crypto = require('crypto');
+        import crypto from 'crypto';
         return crypto.createHash('md5').update(JSON.stringify(data)).digest('hex').substring(0, 8);
     }
 
@@ -1161,4 +1161,4 @@ ConfigValidator.VALIDATION_TYPES = VALIDATION_TYPES;
 ConfigValidator.VALIDATION_LEVELS = VALIDATION_LEVELS;
 ConfigValidator.FORMAT_VALIDATORS = FORMAT_VALIDATORS;
 
-module.exports = ConfigValidator;
+export default ConfigValidator;

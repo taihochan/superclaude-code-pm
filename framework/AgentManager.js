@@ -12,9 +12,9 @@
  * 配合：與ResourceManager和DependencyResolver協作實現最優Agent調度
  */
 
-const { EventEmitter } = require('events');
-const { Worker } = require('worker_threads');
-const EventBus = require('./EventBus');
+import { EventEmitter } from 'events';
+import { Worker } from 'worker_threads';
+import EventBus from './EventBus';
 
 /**
  * Agent狀態定義
@@ -1479,4 +1479,4 @@ class AgentManager extends EventEmitter {
 AgentManager.AGENT_STATUS = AGENT_STATUS;
 AgentManager.AGENT_TYPES = AGENT_TYPES;
 
-module.exports = AgentManager;
+export default AgentManager;

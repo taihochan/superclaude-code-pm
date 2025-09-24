@@ -14,9 +14,9 @@
  * 配合：接收所有處理結果，生成統一的決策支援報告
  */
 
-const { EventEmitter } = require('events');
-const fs = require('fs').promises;
-const path = require('path');
+import { EventEmitter } from 'events';
+import fs from 'fs'.promises;
+import path from 'path';
 
 // 報告格式類型
 const REPORT_FORMATS = {

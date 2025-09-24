@@ -12,8 +12,8 @@
  * 配合：ConfigManager及所有配置相關組件
  */
 
-const { EventEmitter } = require('events');
-const crypto = require('crypto');
+import { EventEmitter } from 'events';
+import crypto from 'crypto';
 
 /**
  * 緩存策略
@@ -1225,4 +1225,4 @@ ConfigPerformanceOptimizer.CACHE_STRATEGIES = CACHE_STRATEGIES;
 ConfigPerformanceOptimizer.COMPRESSION_ALGORITHMS = COMPRESSION_ALGORITHMS;
 ConfigPerformanceOptimizer.METRIC_TYPES = METRIC_TYPES;
 
-module.exports = ConfigPerformanceOptimizer;
+export default ConfigPerformanceOptimizer;

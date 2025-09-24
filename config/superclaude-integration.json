@@ -1,0 +1,46 @@
+{
+  "superclaude": {
+    "installed": true,
+    "path": "./superclaude",
+    "version": "4.1.4",
+    "commands": [
+      "sc:workflow",
+      "sc:analyze",
+      "sc:implement",
+      "sc:test",
+      "sc:improve",
+      "sc:business-panel",
+      "sc:design",
+      "sc:document",
+      "sc:brainstorm"
+    ],
+    "modes": [
+      "business-panel",
+      "orchestration",
+      "task-management",
+      "introspection",
+      "brainstorming"
+    ],
+    "mcpServers": [
+      "sequential-thinking",
+      "context7",
+      "magic",
+      "playwright",
+      "serena",
+      "morphllm-fast-apply"
+    ],
+    "agents": [
+      "analyzer",
+      "architect",
+      "mentor",
+      "security",
+      "performance",
+      "quality",
+      "learning",
+      "frontend",
+      "backend",
+      "devops"
+    ],
+    "integrationStatus": "ready"
+  }
+}

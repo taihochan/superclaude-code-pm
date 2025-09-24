@@ -12,7 +12,7 @@
  * 配合：EventBus事件通信、CircuitBreaker熔斷、FallbackManager降級
  */
 
-const { EventEmitter } = require('events');
+import { EventEmitter } from 'events';
 
 /**
  * 錯誤嚴重性級別
@@ -926,4 +926,4 @@ ErrorHandler.ERROR_CATEGORIES = ERROR_CATEGORIES;
 ErrorHandler.ERROR_STRATEGIES = ERROR_STRATEGIES;
 ErrorHandler.StandardError = StandardError;
 
-module.exports = ErrorHandler;
+export default ErrorHandler;

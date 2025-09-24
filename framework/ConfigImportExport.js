@@ -12,12 +12,12 @@
  * 配合：ConfigManager進行配置的持久化和版本管理
  */
 
-const { EventEmitter } = require('events');
-const fs = require('fs').promises;
-const path = require('path');
-const crypto = require('crypto');
+import { EventEmitter } from 'events';
+import fs from 'fs'.promises;
+import path from 'path';
+import crypto from 'crypto';
 
-const ConfigManager = require('./ConfigManager');
+import ConfigManager from './ConfigManager';
 
 /**
  * 導入導出格式
@@ -1219,4 +1219,4 @@ ConfigImportExport.EXPORT_FORMATS = EXPORT_FORMATS;
 ConfigImportExport.BACKUP_STRATEGIES = BACKUP_STRATEGIES;
 ConfigImportExport.MIGRATION_TYPES = MIGRATION_TYPES;
 
-module.exports = ConfigImportExport;
+export default ConfigImportExport;

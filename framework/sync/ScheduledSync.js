@@ -11,7 +11,7 @@
  * 配合：與StateSynchronizer配合減少系統負載
  */
 
-const { EventEmitter } = require('events');
+import { EventEmitter } from 'events';
 
 /**
  * 定時同步策略
@@ -531,4 +531,4 @@ class ScheduledSync extends EventEmitter {
     }
 }
 
-module.exports = ScheduledSync;
+export default ScheduledSync;

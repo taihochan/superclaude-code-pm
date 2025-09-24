@@ -12,13 +12,13 @@
  * 配合：StateSynchronizer、EventBus、SmartRouter進行配置協調
  */
 
-const { EventEmitter } = require('events');
-const fs = require('fs').promises;
-const path = require('path');
-const crypto = require('crypto');
+import { EventEmitter } from 'events';
+import fs from 'fs/promises';
+import path from 'path';
+import crypto from 'crypto';
 
-const StateSynchronizer = require('./StateSynchronizer');
-const EventBus = require('./EventBus');
+import StateSynchronizer from './StateSynchronizer';
+import EventBus from './EventBus';
 
 /**
  * 配置狀態類型
@@ -1237,4 +1237,4 @@ ConfigManager.CONFIG_STATUS = CONFIG_STATUS;
 ConfigManager.CONFIG_TYPES = CONFIG_TYPES;
 ConfigManager.CONFIG_PRIORITY = CONFIG_PRIORITY;
 
-module.exports = ConfigManager;
+export default ConfigManager;

@@ -72,6 +72,7 @@ async function installSuperClaude() {
                 await fs.ensureDir(path.join(SUPERCLAUDE_DIR, 'modes'));
                 await fs.ensureDir(path.join(SUPERCLAUDE_DIR, 'mcp'));
                 await fs.ensureDir(path.join(SUPERCLAUDE_DIR, 'config'));
+            }
 
             // 創建 SuperClaude 配置
             const superclaudeConfig = {
@@ -181,13 +182,28 @@ export default superclaudeCommands;
 
         // 配置 SuperClaude 與整合框架的連接
         console.log(chalk.green('🔗 配置 SuperClaude 整合連接...'));
+
+        // 讀取實際的 SuperClaude 版本
+        let version = "4.1.4";
+        try {
+            const versionContent = await fs.readFile(path.join(SUPERCLAUDE_DIR, 'VERSION'), 'utf-8');
+            version = versionContent.trim();
+        } catch (error) {
+            console.log(chalk.yellow('⚠️  無法讀取版本文件，使用預設版本'));
+        }
+
         const integrationConfig = {
             superclaude: {
                 installed: true,
                 path: SUPERCLAUDE_DIR,
-                version: "2.0.0",
-                commands: Object.keys((await fs.readJSON(path.join(SUPERCLAUDE_DIR, 'config', 'superclaude-config.json'))).commands),
-                modes: Object.keys(await fs.readJSON(path.join(SUPERCLAUDE_DIR, 'config', 'modes-config.json'))),
+                version: version,
+                commands: [
+                    "sc:workflow", "sc:analyze", "sc:implement", "sc:test", "sc:improve",
+                    "sc:business-panel", "sc:design", "sc:document", "sc:brainstorm"
+                ],
+                modes: ["business-panel", "orchestration", "task-management", "introspection", "brainstorming"],
+                mcpServers: ["sequential-thinking", "context7", "magic", "playwright", "serena", "morphllm-fast-apply"],
+                agents: ["analyzer", "architect", "mentor", "security", "performance", "quality", "learning", "frontend", "backend", "devops"],
                 integrationStatus: "ready"
             }
         };

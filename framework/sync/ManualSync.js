@@ -11,7 +11,7 @@
  * 配合：與StateSynchronizer和CommandRouter配合實現手動觸發
  */
 
-const { EventEmitter } = require('events');
+import { EventEmitter } from 'events';
 
 /**
  * 手動同步策略
@@ -615,4 +615,4 @@ class ManualSync extends EventEmitter {
     }
 }
 
-module.exports = ManualSync;
+export default ManualSync;

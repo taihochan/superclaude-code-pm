@@ -1,0 +1,98 @@
+{
+  "system": {
+    "name": "SuperClaude Code PM",
+    "version": "1.0.0",
+    "environment": "production",
+    "debug": false,
+    "installedAt": "2025-09-24T15:07:54.379Z"
+  },
+  "ccpm": {
+    "enabled": true,
+    "basePath": "./ccpm",
+    "configPath": "./ccpm/config",
+    "version": "1.0.0",
+    "commands": [
+      "pm:help",
+      "pm:status",
+      "pm:epic-list",
+      "pm:prd-list",
+      "pm:prd-new",
+      "pm:prd-parse",
+      "pm:epic-decompose",
+      "pm:epic-sync",
+      "pm:epic-start"
+    ],
+    "integrationStatus": "active"
+  },
+  "superclaude": {
+    "enabled": true,
+    "basePath": "./superclaude",
+    "configPath": "./superclaude/config",
+    "version": "4.1.4",
+    "commands": [
+      "sc:workflow",
+      "sc:analyze",
+      "sc:implement",
+      "sc:test",
+      "sc:improve",
+      "sc:business-panel",
+      "sc:design",
+      "sc:document",
+      "sc:brainstorm"
+    ],
+    "modes": [
+      "business-panel",
+      "orchestration",
+      "task-management",
+      "introspection",
+      "brainstorming"
+    ],
+    "integrationStatus": "active"
+  },
+  "integration": {
+    "frameworkPath": "./framework",
+    "configPath": "./config",
+    "maxConcurrentAgents": 15,
+    "routingStrategy": "ai-optimized",
+    "routingAccuracy": 0.9,
+    "performanceOptimization": true,
+    "enableSmartCaching": true,
+    "cacheSize": "100MB",
+    "sessionTimeout": 3600,
+    "retryPolicy": {
+      "maxRetries": 3,
+      "backoffMs": 1000,
+      "exponentialBackoff": true
+    }
+  },
+  "commands": {
+    "integrated": [
+      "integrated:status",
+      "integrated:analyze",
+      "integrated:workflow",
+      "integrated:report",
+      "integrated:config",
+      "integrated:help",
+      "integrated:monitor",
+      "integrated:optimize",
+      "integrated:parallel",
+      "integrated:routing",
+      "integrated:merge"
+    ]
+  },
+  "performance": {
+    "commandTimeout": 30000,
+    "eventQueueSize": 10000,
+    "maxMemoryUsage": "512MB",
+    "gcInterval": 60000,
+    "monitoringEnabled": true,
+    "metricsCollection": true
+  },
+  "logging": {
+    "level": "info",
+    "file": "./logs/integration.log",
+    "maxSize": "100MB",
+    "maxFiles": 10,
+    "compression": true
+  }
+}

@@ -10,10 +10,10 @@
  * 用途：CCPM和SuperClaude之間的核心通信基礎設施
  */
 
-const EventEmitter = require('events');
-const EventStore = require('./EventStore');
-const EventSerializer = require('./EventSerializer');
-const { EventMiddleware } = require('./EventMiddleware');
+import EventEmitter from 'events';
+import EventStore from './EventStore';
+import EventSerializer from './EventSerializer';
+import { EventMiddleware } from './EventMiddleware';
 
 /**
  * 事件訂閱者信息
@@ -671,4 +671,4 @@ class EventBus extends EventEmitter {
     }
 }
 
-module.exports = EventBus;
+export default EventBus;

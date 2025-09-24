@@ -11,9 +11,9 @@
  * 配合：與DecisionEngine、ContextAnalyzer協同工作
  */
 
-const EventEmitter = require('events');
-const fs = require('fs').promises;
-const path = require('path');
+import EventEmitter from 'events';
+import fs from 'fs'.promises;
+import path from 'path';
 
 // 學習狀態
 const LEARNING_STATUS = {
@@ -1457,4 +1457,4 @@ LearningModule.MODEL_TYPES = MODEL_TYPES;
 LearningModule.FEEDBACK_TYPES = FEEDBACK_TYPES;
 LearningModule.LEARNING_STRATEGIES = LEARNING_STRATEGIES;
 
-module.exports = LearningModule;
+export default LearningModule;

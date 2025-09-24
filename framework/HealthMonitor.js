@@ -12,9 +12,9 @@
  * 配合：ErrorHandler錯誤監控、CircuitBreaker熔斷監控、FallbackManager降級監控
  */
 
-const { EventEmitter } = require('events');
-const fs = require('fs').promises;
-const path = require('path');
+import { EventEmitter } from 'events';
+import fs from 'fs'.promises;
+import path from 'path';
 
 /**
  * 健康狀態等級
@@ -1158,4 +1158,4 @@ HealthMonitor.MONITOR_CATEGORIES = MONITOR_CATEGORIES;
 HealthMonitor.ALERT_LEVELS = ALERT_LEVELS;
 HealthMonitor.HealthCheck = HealthCheck;
 
-module.exports = HealthMonitor;
+export default HealthMonitor;

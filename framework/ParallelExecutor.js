@@ -12,13 +12,13 @@
  * 配合：統一協調所有基礎設施組件實現最優並行執行
  */
 
-const { EventEmitter } = require('events');
-const DependencyResolver = require('./DependencyResolver');
-const ResourceManager = require('./ResourceManager');
-const AgentManager = require('./AgentManager');
-const EventBus = require('./EventBus');
-const CommandRouter = require('./CommandRouter');
-const StateSynchronizer = require('./StateSynchronizer');
+import { EventEmitter } from 'events';
+import DependencyResolver from './DependencyResolver';
+import ResourceManager from './ResourceManager';
+import AgentManager from './AgentManager';
+import EventBus from './EventBus';
+import CommandRouter from './CommandRouter';
+import StateSynchronizer from './StateSynchronizer';
 
 /**
  * 執行狀態定義
@@ -1267,4 +1267,4 @@ class ParallelExecutor extends EventEmitter {
 ParallelExecutor.EXECUTION_STATUS = EXECUTION_STATUS;
 ParallelExecutor.EXECUTION_STRATEGIES = EXECUTION_STRATEGIES;
 
-module.exports = ParallelExecutor;
+export default ParallelExecutor;

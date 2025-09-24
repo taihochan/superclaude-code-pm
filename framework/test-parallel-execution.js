@@ -9,11 +9,11 @@
  * - 實際應用場景模擬
  */
 
-const ParallelExecutor = require('./ParallelExecutor');
-const DependencyResolver = require('./DependencyResolver');
-const ResourceManager = require('./ResourceManager');
-const AgentManager = require('./AgentManager');
-const EventBus = require('./EventBus');
+import ParallelExecutor from './ParallelExecutor';
+import DependencyResolver from './DependencyResolver';
+import ResourceManager from './ResourceManager';
+import AgentManager from './AgentManager';
+import EventBus from './EventBus';
 
 /**
  * 測試工具類

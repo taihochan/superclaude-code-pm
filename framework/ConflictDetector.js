@@ -14,7 +14,7 @@
  * 配合：接收DataFusion結果，為InsightGenerator提供一致性數據
  */
 
-const { EventEmitter } = require('events');
+import { EventEmitter } from 'events';
 
 // 衝突類型定義
 const CONFLICT_TYPES = {

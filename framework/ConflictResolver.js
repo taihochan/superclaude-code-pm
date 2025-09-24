@@ -11,9 +11,9 @@
  * 配合：與StateSynchronizer配合確保狀態一致性
  */
 
-const fs = require('fs').promises;
-const path = require('path');
-const { EventEmitter } = require('events');
+import fs from 'fs'.promises;
+import path from 'path';
+import { EventEmitter } from 'events';
 
 /**
  * 衝突類型
@@ -746,4 +746,4 @@ ConflictResolver.CONFLICT_TYPES = CONFLICT_TYPES;
 ConflictResolver.RESOLUTION_STRATEGIES = RESOLUTION_STRATEGIES;
 ConflictResolver.CONFLICT_SEVERITY = CONFLICT_SEVERITY;
 
-module.exports = ConflictResolver;
+export default ConflictResolver;

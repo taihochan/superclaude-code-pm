@@ -12,15 +12,15 @@
  * 配合：ConfigManager、StateSynchronizer、EventBus
  */
 
-const { EventEmitter } = require('events');
-const fs = require('fs').promises;
-const fsWatch = require('fs');
-const path = require('path');
-const crypto = require('crypto');
+import { EventEmitter } from 'events';
+import fs from 'fs'.promises;
+import fsWatch from 'fs';
+import path from 'path';
+import crypto from 'crypto';
 
-const ConfigManager = require('./ConfigManager');
-const StateSynchronizer = require('./StateSynchronizer');
-const EventBus = require('./EventBus');
+import ConfigManager from './ConfigManager';
+import StateSynchronizer from './StateSynchronizer';
+import EventBus from './EventBus';
 
 /**
  * 熱更新類型
@@ -1057,4 +1057,4 @@ ConfigHotReload.RELOAD_TYPES = RELOAD_TYPES;
 ConfigHotReload.SYNC_STATUS = SYNC_STATUS;
 ConfigHotReload.CONFLICT_STRATEGIES = CONFLICT_STRATEGIES;
 
-module.exports = ConfigHotReload;
+export default ConfigHotReload;

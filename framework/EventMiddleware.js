@@ -10,7 +10,7 @@
  * 用途：在EventBus中提供靈活的事件處理管道
  */
 
-const EventEmitter = require('events');
+import EventEmitter from 'events';
 
 /**
  * 中間件處理器基類

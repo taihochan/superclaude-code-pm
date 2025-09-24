@@ -14,11 +14,15 @@
  * 配合：整合EventBus、StateSynchronizer、ParallelExecutor、SmartRouter
  */
 
-const { EventEmitter } = require('events');
-const EventBus = require('./EventBus');
-const StateSynchronizer = require('./StateSynchronizer');
-const ParallelExecutor = require('./ParallelExecutor');
-const SmartRouter = require('./SmartRouter');
+import { EventEmitter } from 'events';
+import EventBus from './EventBus';
+import StateSynchronizer from './StateSynchronizer';
+import ParallelExecutor from './ParallelExecutor';
+import SmartRouter from './SmartRouter';
+import DataFusion from './DataFusion.js';
+import ConflictDetector from './ConflictDetector.js';
+import InsightGenerator from './InsightGenerator.js';
+import ReportGenerator from './ReportGenerator.js';
 
 // 結果處理狀態
 const INTEGRATION_STATUS = {
@@ -522,7 +526,6 @@ class ResultIntegrator extends EventEmitter {
      */
     async _initializeDataFusion() {
         // 將在DataFusion.js中實現
-        const { DataFusion } = require('./DataFusion');
         const fusion = new DataFusion({
             enableSemanticAnalysis: true,
             enableCorrelationEngine: true
@@ -537,7 +540,6 @@ class ResultIntegrator extends EventEmitter {
      */
     async _initializeConflictDetector() {
         // 將在ConflictDetector.js中實現
-        const { ConflictDetector } = require('./ConflictDetector');
         const detector = new ConflictDetector({
             strategy: this.options.conflictResolutionStrategy,
             minConfidence: this.options.minConfidenceThreshold
@@ -552,7 +554,6 @@ class ResultIntegrator extends EventEmitter {
      */
     async _initializeInsightGenerator() {
         // 將在InsightGenerator.js中實現
-        const { InsightGenerator } = require('./InsightGenerator');
         const generator = new InsightGenerator({
             enablePatternMining: true,
             enablePredictiveAnalysis: true
@@ -567,7 +568,6 @@ class ResultIntegrator extends EventEmitter {
      */
     async _initializeReportGenerator() {
         // 將在ReportGenerator.js中實現
-        const { ReportGenerator } = require('./ReportGenerator');
         const generator = new ReportGenerator({
             enableVisualization: true,
             supportedFormats: ['json', 'markdown', 'html']
@@ -773,4 +773,4 @@ class ResultIntegrator extends EventEmitter {
     }
 }
 
-module.exports = ResultIntegrator;
+export default ResultIntegrator;

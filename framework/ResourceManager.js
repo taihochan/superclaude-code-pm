@@ -12,8 +12,8 @@
  * 配合：與DependencyResolver和AgentManager協作實現最優資源利用
  */
 
-const { EventEmitter } = require('events');
-const os = require('os');
+import { EventEmitter } from 'events';
+import os from 'os';
 
 /**
  * 資源類型定義
@@ -1114,4 +1114,4 @@ class ResourceManager extends EventEmitter {
 ResourceManager.RESOURCE_TYPES = RESOURCE_TYPES;
 ResourceManager.RESOURCE_STATUS = RESOURCE_STATUS;
 
-module.exports = ResourceManager;
+export default ResourceManager;

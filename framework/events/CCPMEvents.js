@@ -9,6 +9,9 @@
  * 用途：CCPM系統內部事件和與SuperClaude的整合事件
  */
 
+import path from 'path';
+import crypto from 'crypto';
+
 /**
  * CCPM事件類型常數
  */
@@ -353,7 +356,6 @@ class CCPMEventFactory {
      * @private
      */
     static _generateProjectId(projectPath) {
-        const path = require('path');
         const projectName = path.basename(projectPath);
         const timestamp = Date.now();
         return `${projectName}_${timestamp}`;
@@ -364,7 +366,6 @@ class CCPMEventFactory {
      * @private
      */
     static _generateHash(filePath) {
-        const crypto = require('crypto');
         return crypto.createHash('sha256').update(filePath).digest('hex').substring(0, 16);
     }
 
@@ -540,7 +541,6 @@ const CCPMEventUtils = {
     _extractProjectIdFromPath(projectPath) {
         if (!projectPath) return null;
 
-        const path = require('path');
         return path.basename(projectPath);
     }
 };

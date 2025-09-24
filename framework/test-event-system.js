@@ -11,22 +11,22 @@
  * 使用方法：node test-event-system.js
  */
 
-const fs = require('fs').promises;
-const path = require('path');
+import fs from 'fs'.promises;
+import path from 'path';
 
 // 事件系統組件
-const EventBus = require('./EventBus');
-const EventStore = require('./EventStore');
-const EventSerializer = require('./EventSerializer');
-const { EventMiddleware, ValidationMiddleware, PerformanceMiddleware } = require('./EventMiddleware');
+import EventBus from './EventBus';
+import EventStore from './EventStore';
+import EventSerializer from './EventSerializer';
+import { EventMiddleware, ValidationMiddleware, PerformanceMiddleware } from './EventMiddleware';
 
 // 事件定義
-const { SystemEventFactory, SYSTEM_EVENT_TYPES } = require('./events/SystemEvents');
-const { CCPMEventFactory, CCPM_EVENT_TYPES } = require('./events/CCPMEvents');
-const { SuperClaudeEventFactory, SUPERCLAUDE_EVENT_TYPES } = require('./events/SuperClaudeEvents');
+import { SystemEventFactory, SYSTEM_EVENT_TYPES } from './events/SystemEvents';
+import { CCPMEventFactory, CCPM_EVENT_TYPES } from './events/CCPMEvents';
+import { SuperClaudeEventFactory, SUPERCLAUDE_EVENT_TYPES } from './events/SuperClaudeEvents';
 
 // CommandRouter整合
-const CommandRouter = require('./CommandRouter');
+import CommandRouter from './CommandRouter';
 
 /**
  * 測試套件
@@ -806,4 +806,4 @@ if (require.main === module) {
         });
 }
 
-module.exports = EventSystemTestSuite;
+export default EventSystemTestSuite;

@@ -12,7 +12,7 @@
  * 配合：ErrorHandler錯誤處理、CircuitBreaker熔斷、HealthMonitor監控
  */
 
-const { EventEmitter } = require('events');
+import { EventEmitter } from 'events';
 
 /**
  * 降級級別
@@ -1281,4 +1281,4 @@ FallbackManager.STRATEGY_TYPES = STRATEGY_TYPES;
 FallbackManager.DegradationStrategy = DegradationStrategy;
 FallbackManager.DegradationPlan = DegradationPlan;
 
-module.exports = FallbackManager;
+export default FallbackManager;

@@ -11,7 +11,7 @@
  * 配合：與StateSynchronizer配合優化性能
  */
 
-const { EventEmitter } = require('events');
+import { EventEmitter } from 'events';
 
 /**
  * 批量同步策略
@@ -436,4 +436,4 @@ class BatchSync extends EventEmitter {
     }
 }
 
-module.exports = BatchSync;
+export default BatchSync;

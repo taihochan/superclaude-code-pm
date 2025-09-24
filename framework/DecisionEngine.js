@@ -11,7 +11,7 @@
  * 配合：與ContextAnalyzer、LearningModule協同工作
  */
 
-const EventEmitter = require('events');
+import EventEmitter from 'events';
 
 // 評估維度
 const EVALUATION_DIMENSIONS = {
@@ -1113,7 +1113,7 @@ class DecisionEngine extends EventEmitter {
      * @private
      */
     _hashAnalysis(analysis) {
-        const crypto = require('crypto');
+        import crypto from 'crypto';
         const analysisString = JSON.stringify(analysis);
         return crypto.createHash('md5').update(analysisString).digest('hex').substring(0, 8);
     }
@@ -1207,4 +1207,4 @@ DecisionEngine.EVALUATION_DIMENSIONS = EVALUATION_DIMENSIONS;
 DecisionEngine.EVALUATION_STATUS = EVALUATION_STATUS;
 DecisionEngine.CONFIDENCE_LEVELS = CONFIDENCE_LEVELS;
 
-module.exports = DecisionEngine;
+export default DecisionEngine;

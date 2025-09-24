@@ -11,8 +11,8 @@
  * 配合：與StateSynchronizer、CommandRouter配合實現統一命令介面
  */
 
-const StateSynchronizer = require('./StateSynchronizer');
-const { MIDDLEWARE_TYPES } = require('./CommandRouter');
+import StateSynchronizer from './StateSynchronizer';
+import { MIDDLEWARE_TYPES } from './CommandRouter';
 
 /**
  * 狀態同步命令橋接器
@@ -535,4 +535,4 @@ class SyncCommandBridge {
     }
 }
 
-module.exports = SyncCommandBridge;
+export default SyncCommandBridge;

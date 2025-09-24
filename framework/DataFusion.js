@@ -14,7 +14,7 @@
  * 配合：提供標準化融合結果供ConflictDetector和InsightGenerator使用
  */
 
-const { EventEmitter } = require('events');
+import { EventEmitter } from 'events';
 
 // 數據格式類型
 const DATA_FORMATS = {
@@ -1326,4 +1326,4 @@ class DataFusion extends EventEmitter {
     }
 }
 
-module.exports = { DataFusion, DATA_FORMATS, FUSION_STRATEGIES, SEMANTIC_TYPES };
+export default { DataFusion, DATA_FORMATS, FUSION_STRATEGIES, SEMANTIC_TYPES };

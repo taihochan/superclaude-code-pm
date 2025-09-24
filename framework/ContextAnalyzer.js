@@ -11,9 +11,9 @@
  * 配合：為DecisionEngine提供深度分析結果
  */
 
-const EventEmitter = require('events');
-const path = require('path');
-const fs = require('fs').promises;
+import EventEmitter from 'events';
+import path from 'path';
+import fs from 'fs'.promises;
 
 // 分析狀態
 const ANALYSIS_STATUS = {
@@ -1640,7 +1640,7 @@ class ContextAnalyzer extends EventEmitter {
             Date.now().toString().slice(0, -5) // 5分鐘精度
         ];
 
-        const crypto = require('crypto');
+        import crypto from 'crypto';
         return crypto.createHash('md5').update(keyParts.join('|')).digest('hex');
     }
 
@@ -1809,4 +1809,4 @@ ContextAnalyzer.CONTEXT_TYPES = CONTEXT_TYPES;
 ContextAnalyzer.INTENT_CATEGORIES = INTENT_CATEGORIES;
 ContextAnalyzer.COMPLEXITY_INDICATORS = COMPLEXITY_INDICATORS;
 
-module.exports = ContextAnalyzer;
+export default ContextAnalyzer;

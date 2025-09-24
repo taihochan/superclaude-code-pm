@@ -12,11 +12,11 @@
  * 配合：EventBus事件通信、StateSynchronizer狀態恢復
  */
 
-const { EventEmitter } = require('events');
-const ErrorHandler = require('./ErrorHandler');
-const CircuitBreaker = require('./CircuitBreaker');
-const FallbackManager = require('./FallbackManager');
-const HealthMonitor = require('./HealthMonitor');
+import { EventEmitter } from 'events';
+import ErrorHandler from './ErrorHandler';
+import CircuitBreaker from './CircuitBreaker';
+import FallbackManager from './FallbackManager';
+import HealthMonitor from './HealthMonitor';
 
 /**
  * 可靠性等級
@@ -1355,4 +1355,4 @@ ReliabilityManager.RELIABILITY_LEVELS = RELIABILITY_LEVELS;
 ReliabilityManager.SYSTEM_MODES = SYSTEM_MODES;
 ReliabilityManager.RECOVERY_STRATEGIES = RECOVERY_STRATEGIES;
 
-module.exports = ReliabilityManager;
+export default ReliabilityManager;

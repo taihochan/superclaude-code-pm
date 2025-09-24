@@ -5,10 +5,10 @@
  * 包括基本用法、高級配置和與CommandRouter的整合
  */
 
-const path = require('path');
-const StateSynchronizer = require('./StateSynchronizer');
-const SyncCommandBridge = require('./SyncCommandBridge');
-const CommandRouter = require('./CommandRouter');
+import path from 'path';
+import StateSynchronizer from './StateSynchronizer';
+import SyncCommandBridge from './SyncCommandBridge';
+import CommandRouter from './CommandRouter';
 
 /**
  * 基本使用示例

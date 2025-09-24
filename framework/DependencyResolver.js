@@ -12,7 +12,7 @@
  * 配合：與AgentManager和ResourceManager協作實現最優執行策略
  */
 
-const { EventEmitter } = require('events');
+import { EventEmitter } from 'events';
 
 /**
  * 任務節點類
@@ -1236,4 +1236,4 @@ class DependencyResolver extends EventEmitter {
     }
 }
 
-module.exports = DependencyResolver;
+export default DependencyResolver;
