@@ -3,7 +3,7 @@
  *
  * 功能：
  * - 展示ParallelExecutor的實際使用場景
- * - CCMP+SuperClaude整合應用示例
+ * - CCPM+SuperClaude整合應用示例
  * - 不同執行策略的對比演示
  * - 實時監控和動態調整展示
  * - 完整的項目開發流程模擬

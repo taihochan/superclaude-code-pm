@@ -132,7 +132,7 @@ export function registerAllIntegratedCommands(commandInterface) {
     // 5. /integrated:config - 配置整合設置
     commandInterface.registerCommand('config', handleConfigCommand, {
         type: INTEGRATED_COMMAND_TYPES.CONFIG,
-        description: '管理CCMP+SuperClaude整合系統的配置設置',
+        description: '管理CCPM+SuperClaude整合系統的配置設置',
         category: 'configuration',
         priority: COMMAND_PRIORITY.NORMAL,
         examples: [

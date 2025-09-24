@@ -62,7 +62,7 @@ npm run install-all
 
 這個命令會自動：
 - ✅ 安裝 Node.js 依賴
-- ✅ 下載並配置 Claude Code PM (CCMP)
+- ✅ 下載並配置 Claude Code PM (CCPM)
 - ✅ 安裝 SuperClaude Framework
 - ✅ 設置整合框架配置
 - ✅ 運行系統驗證測試

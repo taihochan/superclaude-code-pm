@@ -98,7 +98,7 @@ CCPM 支持多Agent並行執行，可標記 "parallel: true" 的任務。
         const integrationConfig = {
             ccpm: {
                 installed: true,
-                path: CCMP_DIR,
+                path: CCPM_DIR,
                 version: "1.0.0",
                 commands: Object.keys((await fs.readJSON(path.join(CCPM_DIR, 'config', 'ccpm-config.json'))).commands),
                 integrationStatus: "ready"
@@ -112,7 +112,7 @@ CCPM 支持多Agent並行執行，可標記 "parallel: true" 的任務。
         console.log(chalk.blue('🔧 配置文件已創建:'), './config/ccpm-integration.json');
 
     } catch (error) {
-        console.error(chalk.red('❌ CCMP 安裝失敗:'), error.message);
+        console.error(chalk.red('❌ CCPM 安裝失敗:'), error.message);
         process.exit(1);
     }
 }
