@@ -255,25 +255,60 @@ npm run validate
 cd ..
 ```
 
-#### 方式二：直接複製整合
+#### 方式二：無 Git 衝突整合
 
-適合需要自訂框架的場景：
+適合需要自訂框架或避免 `.git` 衝突的場景：
 
 ```bash
-# 克隆到臨時目錄
-git clone https://github.com/taihochan/superclaude-code-pm.git temp-superclaude
+# 方法 A：使用 degit 避免 Git 衝突（推薦）
+# 先安裝 degit（如果尚未安裝）
+npm install -g degit
 
-# 複製框架到您的專案
-cp -r temp-superclaude/framework your-existing-project/.superclaude/
-cp -r temp-superclaude/config your-existing-project/.superclaude/
-cp temp-superclaude/package.json your-existing-project/.superclaude/
+# 在您的既有專案根目錄下
+cd your-existing-project
 
-# 清理臨時目錄
-rm -rf temp-superclaude
+# 使用 degit 下載，不包含 .git 目錄
+npx degit taihochan/superclaude-code-pm .superclaude-pm
 
-# 在專案中安裝依賴
-cd your-existing-project/.superclaude
-npm install
+# 安裝框架
+cd .superclaude-pm
+npm run install-all
+npm run validate
+cd ..
+```
+
+```bash
+# 方法 B：手動下載並提取（備用方案）
+# 下載 ZIP 文件（可通過瀏覽器或 curl）
+curl -L https://github.com/taihochan/superclaude-code-pm/archive/refs/heads/main.zip -o superclaude-pm.zip
+
+# 解壓縮到指定目錄
+unzip superclaude-pm.zip
+mv superclaude-code-pm-main .superclaude-pm
+
+# 清理下載文件
+rm superclaude-pm.zip
+
+# 安裝框架
+cd .superclaude-pm
+npm run install-all
+npm run validate
+cd ..
+```
+
+```bash
+# 方法 C：淺層克隆後移除 Git（省空間）
+# 淺層克隆（只下載最新版本）
+git clone --depth 1 https://github.com/taihochan/superclaude-code-pm.git .superclaude-pm
+
+# 進入目錄並移除 Git 追蹤
+cd .superclaude-pm
+rm -rf .git
+
+# 安裝框架
+npm run install-all
+npm run validate
+cd ..
 ```
 
 ### 🛠️ Claude Code 協作配置
