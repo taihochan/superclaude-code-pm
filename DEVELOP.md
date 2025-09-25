@@ -208,6 +208,205 @@ function detect_project_type() {
 
 ---
 
+## 🛡️ 會話持續性保護系統 (Session Guardian)
+
+### 🎯 設計目標
+
+解決 Claude Code 長時間會話中的核心問題：**會話偏離與上下文丟失**
+
+當用戶執行如 `/sccpm:develop-ultimate "crypto-trading-bot" --mode enterprise --agents 12` 這樣的複雜指令時，會話可能在中途偏離回到原生 Claude Code 模式，失去 SCCPM 的多代理控制和企業級功能。
+
+### 🏗️ 技術架構
+
+```bash
+┌─────────────────────────────────────────────────────────────┐
+│                Session Guardian Architecture                 │
+├─────────────────────────────────────────────────────────────┤
+│  🎯 Main Script          │  🛡️ Guardian Core              │
+│  ┌─────────────────────┐  │  ┌───────────────────────────┐   │
+│  │ /sccpm:develop      │  │  │ session-guard.sh          │   │
+│  │ - init_session      │◄─┤  │ - Background Monitor      │   │
+│  │ - main_logic        │  │  │ - State Detection         │   │
+│  │ - terminate_session │  │  │ - Auto Recovery           │   │
+│  └─────────────────────┘  │  └───────────────────────────┘   │
+│                           │                                  │
+│  📊 Session State Files  │  🔄 Recovery Mechanisms          │
+│  ┌─────────────────────┐  │  ┌───────────────────────────┐   │
+│  │ /tmp/sccpm_session/ │  │  │ - Agent Restart           │   │
+│  │ - context.json      │  │  │ - Context Restore         │   │
+│  │ - agent_status.json │  │  │ - Command Re-execution    │   │
+│  │ - heartbeat         │  │  │ - State Synchronization   │   │
+│  └─────────────────────┘  │  └───────────────────────────┘   │
+└─────────────────────────────────────────────────────────────┘
+```
+
+### 🔧 核心組件實現
+
+#### 1. 全域守護者核心 (`session-guard.sh`)
+
+**關鍵函數**：
+
+```bash
+# 初始化會話守護者
+init_global_session_guard() {
+    local command_name="$1"
+    local agent_count="$2"
+    local project_name="$3"
+
+    # 創建會話上下文
+    # 啟動背景監控程序
+    # 設定狀態檔案
+}
+
+# 檢查會話健康度
+check_sccpm_session_health() {
+    # 檢查上下文完整性
+    # 檢查 Agent 活躍度
+    # 檢查 PM/SC 整合狀態
+    # 返回健康度評估
+}
+
+# 執行自動回歸
+execute_session_recovery() {
+    # 清理異常狀態
+    # 重建 SCCPM 上下文
+    # 重啟 Agent 系統
+    # 重新執行指令邏輯
+    # 驗證回歸成功
+}
+```
+
+#### 2. 會話狀態監控
+
+**狀態檢測維度**：
+
+```json
+{
+  "session_health_matrix": {
+    "context_integrity": {
+      "sccpm_context_file": "存在且有效",
+      "session_variables": "環境變數完整",
+      "command_history": "指令歷史記錄"
+    },
+    "agent_system": {
+      "expected_agents": 12,
+      "active_agents": 12,
+      "agent_response": "正常",
+      "parallel_processing": "運行中"
+    },
+    "framework_integration": {
+      "pm_status": "活躍",
+      "sc_status": "活躍",
+      "mcp_services": "整合中"
+    }
+  }
+}
+```
+
+#### 3. 智能偏離檢測
+
+**檢測邏輯**：
+
+```bash
+# 偏離檢測算法
+detect_session_deviation() {
+    local deviation_score=0
+
+    # 檢查 1: 上下文檢測 (權重: 40%)
+    if [ ! -f "$SCCMP_CONTEXT_FILE" ]; then
+        deviation_score=$((deviation_score + 40))
+    fi
+
+    # 檢查 2: Agent 活躍度 (權重: 35%)
+    local active_ratio=$(get_agent_active_ratio)
+    if [ $active_ratio -lt 50 ]; then
+        deviation_score=$((deviation_score + 35))
+    fi
+
+    # 檢查 3: 框架整合狀態 (權重: 25%)
+    if ! check_framework_integration; then
+        deviation_score=$((deviation_score + 25))
+    fi
+
+    # 偏離閾值: 60%
+    return $((deviation_score > 60 ? 1 : 0))
+}
+```
+
+#### 4. 自動回歸策略
+
+**三階段回歸流程**：
+
+```yaml
+Stage1_狀態清理:
+  - 終止異常處理程序
+  - 清理殘留上下文
+  - 重置會話狀態
+
+Stage2_系統重建:
+  - 重新載入 SCCPM 上下文
+  - 重啟 Agent 映射
+  - 恢復專案配置
+  - 重建服務連接
+
+Stage3_指令恢復:
+  - 重新執行原始指令邏輯
+  - 恢復工作流程狀態
+  - 同步 GitHub 整合
+  - 驗證系統完整性
+```
+
+### 💡 整合方式
+
+**所有 SCCPM 腳本自動整合**：
+
+```bash
+#!/bin/bash
+# 任何 SCCMP 腳本模板
+
+# 載入全域會話守護者
+source "$(dirname "$0")/session-guard.sh"
+
+# 腳本開始時自動啟動
+PROJECT_NAME="$1"
+AGENTS="${2:-6}"
+init_global_session_guard "script-name" "$AGENTS" "$PROJECT_NAME"
+
+# 主要邏輯...
+# ...
+
+# 腳本結束時自動終止
+terminate_session_guard "script-name"
+```
+
+**背景守護程序**：
+
+```bash
+# 30秒間隔監控
+while [ -f "$SCCPM_CONTEXT_FILE" ]; do
+    if ! check_sccpm_session_health; then
+        deviation_count=$((deviation_count + 1))
+
+        if [ $deviation_count -ge 3 ]; then
+            execute_session_recovery
+            deviation_count=0
+        fi
+    fi
+
+    sleep 30
+done
+```
+
+### 📊 效果與優勢
+
+1. **徹底解決會話偏離問題**: 自動檢測並強制回歸 SCCPM 模式
+2. **零配置自動保護**: 所有 SCCPM 指令預設啟用保護
+3. **智能恢復機制**: 保留開發進度，無縫恢復工作狀態
+4. **企業級穩定性**: 適用於長時間、高強度開發會話
+5. **透明運作**: 不干擾正常開發流程，背景默默保護
+
+---
+
 ## 🔄 執行流程設計
 
 ### 標準 6 階段執行模式
