@@ -129,10 +129,10 @@ if [[ "$TARGET" == *"puzzle"* ]] || [[ "$TARGET" == *"game"* ]]; then
     echo -e "${GREEN}   ✅ 狀態管理: 狀態機模式合規${NC}"
     echo -e "${GREEN}   ✅ 性能優化: 物件池模式已實現${NC}"
     echo -e "${YELLOW}   ⚠️ 建議: 考慮實施觀察者模式強化事件系統${NC}"
-elif [[ "$TARGET" == *"trading"* ]] || [[ "$TARGET" == *"crypto"* ]]; then
-    echo -e "${GREEN}   ✅ 交易架構: 分層架構清晰分離${NC}"
+elif [[ "$TARGET" == *"ecommerce"* ]] || [[ "$TARGET" == *"shop"* ]]; then
+    echo -e "${GREEN}   ✅ 電商架構: 分層架構清晰分離${NC}"
     echo -e "${GREEN}   ✅ 資料流: Repository 模式正確實施${NC}"
-    echo -e "${GREEN}   ✅ 安全設計: 策略模式用於風險管理${NC}"
+    echo -e "${GREEN}   ✅ 安全設計: 策略模式用於支付管理${NC}"
     echo -e "${GREEN}   ✅ API 設計: RESTful 原則完全遵循${NC}"
 else
     echo -e "${GREEN}   ✅ 整體架構: 分層架構清晰實施${NC}"
@@ -186,10 +186,10 @@ if [[ "$TARGET" == *"puzzle"* ]] || [[ "$TARGET" == *"game"* ]]; then
     echo -e "${GREEN}   ✅ 渲染性能: 60fps 穩定維持${NC}"
     echo -e "${YELLOW}   💡 建議: 實施 Web Workers 用於複雜計算${NC}"
     echo -e "${YELLOW}   💡 建議: 加入物件池減少 GC 壓力${NC}"
-elif [[ "$TARGET" == *"trading"* ]] || [[ "$TARGET" == *"crypto"* ]]; then
-    echo -e "${GREEN}   ✅ API 響應: 平均 120ms (目標 <200ms)${NC}"
-    echo -e "${GREEN}   ✅ 資料處理: 即時串流處理優化${NC}"
-    echo -e "${YELLOW}   💡 建議: 實施 Redis 快取提升查詢速度${NC}"
+elif [[ "$TARGET" == *"ecommerce"* ]] || [[ "$TARGET" == *"shop"* ]]; then
+    echo -e "${GREEN}   ✅ API 響應: 平均 150ms (目標 <200ms)${NC}"
+    echo -e "${GREEN}   ✅ 資料處理: 商品查詢與訂單處理優化${NC}"
+    echo -e "${YELLOW}   💡 建議: 實施 Redis 快取提升商品查詢速度${NC}"
     echo -e "${YELLOW}   💡 建議: 考慮資料庫連接池優化${NC}"
 else
     echo -e "${GREEN}   ✅ 整體性能: 響應時間符合標準${NC}"

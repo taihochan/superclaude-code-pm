@@ -62,7 +62,7 @@ SCCPM 框架基於以下核心設計理念：
 │   └── develop-ultimate.sh      # 終極開發腳本 (最複雜)
 └── standards/                   # 開發規範配置
     ├── *.yml                    # YAML 格式規範配置
-    └── crypto-project.yml       # 加密貨幣專案範例配置
+    └── *.yml                    # 專案規範配置範例
 ```
 
 ### 設計模式
@@ -143,10 +143,6 @@ function detect_project_type() {
     local project_name="$1"
     local detected_type="generic"
 
-    # 加密貨幣/金融科技
-    if [[ "$project_name" =~ (crypto|trading|fintech|blockchain|defi|binance) ]]; then
-        detected_type="crypto_trading"
-
     # Web 應用/電商
     elif [[ "$project_name" =~ (web|app|ecommerce|shop|platform|api) ]]; then
         detected_type="web_application"
@@ -155,9 +151,9 @@ function detect_project_type() {
     elif [[ "$project_name" =~ (mobile|ios|android|react-native|flutter) ]]; then
         detected_type="mobile_application"
 
-    # 金融科技平台
-    elif [[ "$project_name" =~ (fintech|payment|banking|finance|money) ]]; then
-        detected_type="fintech_platform"
+    # 數據分析平台
+    elif [[ "$project_name" =~ (data|analytics|ml|ai|insights) ]]; then
+        detected_type="data_analytics"
     fi
 
     echo "$detected_type"
@@ -169,24 +165,24 @@ function detect_project_type() {
 ```yaml
 # 配置文件位置: .claude/standards/{project-type}.yml
 專案類型對應代理配置:
-  crypto_trading:
+  generic_project:
     agents:
-      - AI_ML_Expert: "🧠 AI/ML 策略專家 (TensorFlow.js + 量化分析)"
-      - RealTime_Data: "📊 即時數據專家 (WebSocket + Market Data Pipeline)"
-      - HFT_Expert: "⚡ 高頻交易專家 (毫秒級響應 + 並發處理)"
-      - Security_Risk: "🛡️ 安全與風控專家 (API Security + Risk Management)"
-      - Exchange_API: "🔗 交易所整合專家 (Binance API + Multi-Exchange)"
-      - Trading_UI: "🎨 交易界面專家 (Vue.js + Real-time Visualization)"
-      - Backtest_Expert: "🧪 策略回測專家 (Backtesting + Performance Analysis)"
-      - Mobile_Expert: "📱 移動端專家 (PWA + Mobile Trading Experience)"
+      - Full_Stack_Expert: "🏗️ 全端架構專家 (系統設計 + 技術整合)"
+      - Frontend_Expert: "🎨 前端專家 (現代框架 + 用戶體驗)"
+      - Backend_Expert: "⚙️ 後端專家 (API設計 + 資料處理)"
+      - Database_Expert: "🗄️ 資料庫專家 (資料建模 + 性能調優)"
+      - Security_Expert: "🛡️ 資安專家 (安全架構 + 風險控制)"
+      - Testing_Expert: "🧪 測試專家 (品質保證 + 自動化測試)"
+      - DevOps_Expert: "🔧 DevOps專家 (CI/CD + 部署管理)"
+      - Performance_Expert: "⚡ 性能專家 (優化調校 + 監控分析)"
 
     performance_requirements:
-      api_response_time: "100ms"
-      websocket_latency: "10ms"
-      order_execution_time: "50ms"
+      response_time: "200ms"
+      availability: "99.9%"
+      concurrent_users: "1000+"
 
-    compliance_requirements: ["PCI-DSS", "SOX", "AML", "KYC", "FATF"]
-    security_level: "critical"
+    compliance_requirements: ["Security Standards", "Code Quality", "Documentation"]
+    security_level: "standard"
 
   web_application:
     agents:
@@ -214,7 +210,7 @@ function detect_project_type() {
 
 解決 Claude Code 長時間會話中的核心問題：**會話偏離與上下文丟失**
 
-當用戶執行如 `/sccpm:develop-ultimate "crypto-trading-bot" --mode enterprise --agents 12` 這樣的複雜指令時，會話可能在中途偏離回到原生 Claude Code 模式，失去 SCCPM 的多代理控制和企業級功能。
+當用戶執行如 `/sccpm:develop-ultimate "web-platform" --mode enterprise --agents 12` 這樣的複雜指令時，會話可能在中途偏離回到原生 Claude Code 模式，失去 SCCPM 的多代理控制和企業級功能。
 
 ### 🏗️ 技術架構
 
@@ -607,7 +603,7 @@ git:                       # Git 工作流程
 security:                  # 安全要求
   level: "high"           # 安全等級
   requirements: [...]      # 通用安全要求
-  crypto_specific: [...]   # 專案特定安全要求
+  project_specific: [...]   # 專案特定安全要求
 
 performance:               # 性能標準
   targets: {...}          # 性能目標

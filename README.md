@@ -78,13 +78,13 @@ bash .claude/scripts/sccpm/develop.sh "my-project"       # 開始開發
 bash .claude/scripts/sccpm/prd.sh "專案名稱" [模式] [分析深度]
 
 # 📋 參數說明
-專案名稱     : 必填，專案識別名稱 (例: "crypto-trading-bot")
+專案名稱     : 必填，專案識別名稱 (例: "my-awesome-project")
 模式        : 可選，analysis(分析) | creation(創建) | optimization(優化)，預設: creation
 分析深度    : 可選，basic(基礎) | detailed(詳細) | comprehensive(全面)，預設: detailed
 
 # 🌟 使用範例
 bash .claude/scripts/sccpm/prd.sh "e-commerce-platform"                           # 基本電商平台 PRD
-bash .claude/scripts/sccpm/prd.sh "ai-trading-system" "creation" "comprehensive"  # 全面AI交易系統 PRD
+bash .claude/scripts/sccpm/prd.sh "web-platform" "creation" "comprehensive"     # 全面Web平台 PRD
 bash .claude/scripts/sccpm/prd.sh "mobile-app" "optimization" "detailed"          # 手機應用優化 PRD
 
 # 🎯 執行流程
@@ -115,8 +115,8 @@ bash .claude/scripts/sccpm/epic.sh "專案名稱" [分解模式] [優先級策�
 優先級策略   : 可選，business(商業價值) | risk(風險) | dependency(依賴)，預設: business
 
 # 🌟 使用範例
-bash .claude/scripts/sccpm/epic.sh "crypto-bot"                                    # 基本功能分解
-bash .claude/scripts/sccpm/epic.sh "fintech-app" "technical" "dependency"         # 技術導向依賴排序
+bash .claude/scripts/sccpm/epic.sh "web-platform"                               # 基本功能分解
+bash .claude/scripts/sccpm/epic.sh "mobile-app" "technical" "dependency"          # 技術導向依賴排序
 bash .claude/scripts/sccpm/epic.sh "e-learning" "user-story" "business"           # 用戶故事商業排序
 
 # 🎯 執行流程
@@ -150,7 +150,7 @@ bash .claude/scripts/sccpm/sync.sh "專案名稱" [同步模式] [分配策略]
 分配策略     : 可選，auto-assign(自動分配) | skill-match(技能匹配) | load-balance(負載均衡)，預設: skill-match
 
 # 🌟 使用範例
-bash .claude/scripts/sccpm/sync.sh "crypto-trading-bot"                           # 完整 GitHub 同步
+bash .claude/scripts/sccpm/sync.sh "web-platform"                                # 完整 GitHub 同步
 bash .claude/scripts/sccpm/sync.sh "web-app" "create-issues" "auto-assign"       # 創建 Issues 自動分配
 bash .claude/scripts/sccpm/sync.sh "mobile-app" "sync-progress" "load-balance"   # 同步進度負載均衡
 
@@ -197,7 +197,7 @@ bash .claude/scripts/sccpm/develop.sh "專案名稱" [模式] [代理數量] [�
 專注領域     : 可選，performance(性能) | security(安全) | scalability(擴展性)，預設: auto-detect
 
 # 🌟 使用範例
-bash .claude/scripts/sccpm/develop.sh "trading-bot" "intensive" "8" "performance"  # 高性能交易系統
+bash .claude/scripts/sccpm/develop.sh "web-platform" "intensive" "8" "performance"  # 高性能 Web 平台
 bash .claude/scripts/sccpm/develop.sh "web-app" "quality-first" "6" "security"     # 安全優先開發
 bash .claude/scripts/sccpm/develop.sh "mobile-app" "balanced" "4"                  # 平衡開發模式
 
@@ -210,14 +210,17 @@ bash .claude/scripts/sccpm/develop.sh "mobile-app" "balanced" "4"               
 # Phase 6: CCPM 進度監控 (即時進度追蹤和資源分配)
 
 # 🤖 代理專業化 (根據專案類型自動配置)
-# 加密貨幣交易系統:
-#   - AI/ML 策略專家, 即時數據專家, 高頻交易專家
-#   - 安全與風控專家, 交易所整合專家, 交易界面專家
-#   - 策略回測專家, 移動端專家 (8個代理配置)
+# 企業級應用系統:
+#   - 架構師, 全端工程師, 資料庫專家
+#   - 安全專家, 測試專家, DevOps專家, 品質專家 (8個代理配置)
 #
-# 一般 Web 應用:
+# Web平台應用:
 #   - 前端專家, 後端專家, 資料庫專家
 #   - API 專家, 測試專家, DevOps 專家 (6個代理配置)
+#
+# 資料分析平台:
+#   - 資料工程師, 分析師, ML工程師
+#   - 視覺化專家, 品質專家, DevOps專家 (6個代理配置)
 ```
 
 #### `/sccpm:develop-ultimate` - 終極品質開發引擎 🔥
@@ -238,8 +241,8 @@ CI/CD系統   : 可選，github-actions | gitlab-ci | jenkins，預設: github-a
 規範文件     : 可選，.claude/standards/專案.yml 路徑，預設: auto-detect
 
 # 🌟 使用範例
-bash .claude/scripts/sccpm/develop-ultimate.sh "crypto-trading-bot" "enterprise" "12" "strict" "gitflow" "github-actions"
-bash .claude/scripts/sccpm/develop-ultimate.sh "fintech-platform" "enterprise" "16" "strict" "gitflow" "github-actions" ".claude/standards/fintech.yml"
+bash .claude/scripts/sccpm/develop-ultimate.sh "web-platform" "enterprise" "12" "strict" "gitflow" "github-actions"
+bash .claude/scripts/sccpm/develop-ultimate.sh "e-commerce-platform" "enterprise" "16" "strict" "gitflow" "github-actions" ".claude/standards/ecommerce.yml"
 bash .claude/scripts/sccpm/develop-ultimate.sh "startup-mvp" "startup" "8" "standard" "github-flow" "github-actions"
 
 # 🚀 終極功能特色
@@ -303,7 +306,7 @@ bash .claude/scripts/sccpm/review.sh "專案名稱" [審查範圍] [品質標準
 品質標準     : 可選，enterprise(企業) | standard(標準) | basic(基本)，預設: standard
 
 # 🌟 使用範例
-bash .claude/scripts/sccpm/review.sh "crypto-bot" "full-codebase" "enterprise"    # 企業級全面審查
+bash .claude/scripts/sccpm/review.sh "web-platform" "full-codebase" "enterprise"  # 企業級全面審查
 bash .claude/scripts/sccpm/review.sh "web-app" "recent-commits" "standard"       # 標準最近提交審查
 ```
 
@@ -321,8 +324,8 @@ bash .claude/scripts/sccpm/analyze.sh "專案名稱" [分析維度] [報告格�
 報告格式     : 可選，summary(摘要) | detailed(詳細) | executive(高層)，預設: detailed
 
 # 🌟 使用範例
-bash .claude/scripts/sccpm/analyze.sh "fintech-app" "security" "executive"       # 安全分析高層報告
-bash .claude/scripts/sccpm/analyze.sh "trading-system" "performance" "detailed" # 性能詳細分析
+bash .claude/scripts/sccpm/analyze.sh "web-app" "security" "executive"         # 安全分析高層報告
+bash .claude/scripts/sccpm/analyze.sh "web-platform" "performance" "detailed"   # 性能詳細分析
 bash .claude/scripts/sccpm/analyze.sh "web-platform" "all" "summary"           # 全面分析摘要
 ```
 
@@ -424,41 +427,25 @@ bash .claude/scripts/sccmp/watchdog.sh --status --detailed
 
 SCCPM 會根據專案名稱自動識別專案類型並配置專業代理：
 
-### 🪙 加密貨幣/金融科技專案
-**觸發關鍵字**: `crypto`, `trading`, `fintech`, `blockchain`, `defi`
+### 🌐 Web應用/電商平台專案
+**觸發關鍵字**: `web`, `platform`, `ecommerce`, `application`, `system`
 
 ```yaml
 專業代理配置:
-  - 🧠 AI/ML 策略專家: TensorFlow.js + 量化分析
-  - 📊 即時數據專家: WebSocket + Market Data Pipeline
-  - ⚡ 高頻交易專家: 毫秒級響應 + 並發處理
-  - 🛡️ 安全與風控專家: API Security + Risk Management
-  - 🔗 交易所整合專家: Binance API + Multi-Exchange
-  - 🎨 交易界面專家: Vue.js + Real-time Visualization
-  - 🧪 策略回測專家: Backtesting + Performance Analysis
-  - 📱 移動端專家: PWA + Mobile Trading Experience
+  - 🏗️ 全端架構專家: 系統設計 + 技術整合
+  - 🎨 前端專家: 現代框架 + 用戶體驗
+  - ⚙️ 後端專家: API設計 + 資料處理
+  - 🗄️ 資料庫專家: 資料建模 + 性能調優
+  - 🛡️ 資安專家: 安全架構 + 風險控制
+  - 🧪 測試專家: 品質保證 + 自動化測試
+  - 🔧 DevOps專家: CI/CD + 部署管理
+  - ⚡ 性能專家: 優化調校 + 監控分析
 
-合規要求: PCI-DSS, SOX, AML, KYC, FATF
-性能要求: API響應<100ms, WebSocket延遲<10ms, 訂單執行<50ms
-安全等級: Critical (加密存儲, API輪換, 交易簽名, 審計日誌)
+合規要求: Security Standards, Code Quality, Documentation
+性能要求: 響應時間<200ms, 可用性>99.9%, 併發用戶>1000+
+安全等級: Standard (資料加密, 存取控制, 稽核日誌)
 ```
 
-### 🌐 Web應用/電商平台
-**觸發關鍵字**: `web`, `app`, `ecommerce`, `shop`, `platform`
-
-```yaml
-專業代理配置:
-  - 🎨 前端架構專家: React/Vue + 響應式設計
-  - 🏗️ 後端架構專家: Node.js/Python + API設計
-  - 🗄️ 資料庫專家: SQL/NoSQL + 性能調優
-  - 🔐 安全專家: HTTPS + Authentication + CORS
-  - 🧪 測試專家: Jest + Cypress + 自動化測試
-  - 📊 SEO/性能專家: Lighthouse + Core Web Vitals
-
-合規要求: GDPR, CCPA, WCAG 2.1 AA
-性能要求: Lighthouse>90, FCP<1.5s, LCP<2.5s
-安全等級: High (輸入驗證, XSS防護, CSRF保護)
-```
 
 ### 📱 移動應用
 **觸發關鍵字**: `mobile`, `app`, `ios`, `android`, `react-native`
@@ -489,8 +476,8 @@ SCCPM 支援多種方式配置開發規範：
 ```yaml
 # 專案資訊
 project_info:
-  name: "crypto-trading-bot"
-  type: "fintech-trading"
+  name: "web-platform"
+  type: "web-application"
   compliance_level: "enterprise"
 
 # 代碼品質規範
@@ -541,10 +528,11 @@ security:
     - "input-validation"
     - "rate-limiting"
 
-  crypto_specific:
-    - "private-key-encryption"
-    - "api-key-rotation"
-    - "transaction-signing"
+  enterprise_security:
+    - "tls-encryption"
+    - "api-key-management"
+    - "secure-authentication"
+    - "audit-logging"
 
 # 性能標準
 performance:
@@ -589,25 +577,28 @@ SCCPM 使用 Serena MCP 實現跨會話專案狀態管理：
 
 ```yaml
 專案類型識別矩陣:
-  crypto_trading:
-    keywords: ["crypto", "trading", "bot", "binance", "blockchain"]
-    agents: [AI_ML, RealTime_Data, HFT, Security, Exchange_API, UI, Backtest, Mobile]
-    compliance: ["PCI-DSS", "AML", "KYC"]
+  high_performance_system:
+    keywords: ["performance", "realtime", "scalable", "distributed"]
+    agents: [架構師, 性能專家, 後端工程師, 資料庫專家, 監控專家, DevOps]
+    compliance: ["ISO27001", "GDPR", "SOC2"]
 
-  web_application:
-    keywords: ["web", "app", "frontend", "backend", "api"]
-    agents: [Frontend, Backend, Database, Security, Testing, DevOps]
-    compliance: ["GDPR", "WCAG"]
+  enterprise_application:
+    keywords: ["enterprise", "business", "system", "platform"]
+    agents: [架構師, 全端工程師, 資料庫專家, 安全專家, 測試專家, DevOps]
+    compliance: ["ISO27001", "GDPR", "WCAG"]
+    quality_gates: ["code_review", "security_scan", "performance_test"]
 
-  mobile_application:
-    keywords: ["mobile", "ios", "android", "react-native", "flutter"]
-    agents: [iOS, Android, CrossPlatform, UIUX, Performance, Testing]
-    compliance: ["App_Store", "Play_Store"]
+  web_platform:
+    keywords: ["web", "platform", "frontend", "backend", "api"]
+    agents: [前端專家, 後端專家, API設計師, 資料庫專家, 測試工程師]
+    compliance: ["WCAG_2.1_AA", "OWASP_Top10"]
+    quality_gates: ["accessibility_check", "security_audit", "load_test"]
 
-  fintech_platform:
-    keywords: ["fintech", "payment", "banking", "finance", "money"]
-    agents: [Security, Compliance, API, Database, Audit, Risk]
-    compliance: ["PCI-DSS", "SOX", "GDPR", "PSD2"]
+  data_analytics:
+    keywords: ["data", "analytics", "ml", "ai", "insights"]
+    agents: [資料工程師, 分析師, ML工程師, 視覺化專家, 品質專家]
+    compliance: ["GDPR", "Data_Governance"]
+    quality_gates: ["data_validation", "model_testing", "pipeline_monitoring"]
 ```
 
 ---
@@ -663,11 +654,11 @@ ls -la .claude/scripts/sccpm/
 **解決方案**:
 ```bash
 # 檢查專案名稱是否包含正確關鍵字
-bash .claude/scripts/sccpm/develop.sh "crypto-trading-bot" # ✅ 正確
+bash .claude/scripts/sccpm/develop.sh "web-platform" # ✅ 正確
 bash .claude/scripts/sccpm/develop.sh "my-project"        # ❌ 泛用型
 
 # 手動指定專案類型
-bash .claude/scripts/sccpm/develop.sh "my-bot" "intensive" "8" "trading"
+bash .claude/scripts/sccpm/develop.sh "my-platform" "intensive" "8" "performance"
 ```
 
 #### Q: 開發規範沒有被載入

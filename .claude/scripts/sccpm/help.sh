@@ -36,8 +36,8 @@ if [ -n "$COMMAND" ]; then
             echo -e "${CYAN}封裝指令: /pm:prd-new → /sc:business-panel → /sc:analyze → /sc:brainstorm → /pm:prd-parse${NC}"
             echo
             echo -e "${YELLOW}使用範例:${NC}"
-            echo -e "${GREEN}/sccpm:prd \"AI Trading Platform\" --template enterprise --experts \"all\"${NC}"
-            echo -e "${GREEN}/sccpm:prd \"Crypto Bot\" --focus fintech --competitive-analysis${NC}"
+            echo -e "${GREEN}/sccpm:prd \"AI Platform\" --template enterprise --experts \"all\"${NC}"
+            echo -e "${GREEN}/sccpm:prd \"Web Platform\" --focus ecommerce --competitive-analysis${NC}"
             ;;
         "epic")
             echo -e "${WHITE}🏗️ EPIC Decomposition & Design / EPIC 分解與設計${NC}"
@@ -45,7 +45,7 @@ if [ -n "$COMMAND" ]; then
             echo -e "${CYAN}封裝指令: /pm:epic-decompose → /sc:design → /sc:spec-panel → /sc:workflow → /pm:epic-sync${NC}"
             echo
             echo -e "${YELLOW}使用範例:${NC}"
-            echo -e "${GREEN}/sccpm:epic \"Trading Platform PRD\" --focus architecture --microservices${NC}"
+            echo -e "${GREEN}/sccpm:epic \"Web Platform PRD\" --focus architecture --microservices${NC}"
             echo -e "${GREEN}/sccpm:epic \"AI Platform\" --agile-sprints --2-week-cycles${NC}"
             ;;
         "develop")
@@ -54,7 +54,7 @@ if [ -n "$COMMAND" ]; then
             echo -e "${CYAN}封裝指令: /pm:epic-start → /sc:implement → /sc:analyze → /sc:test → /sc:build${NC}"
             echo
             echo -e "${YELLOW}使用範例:${NC}"
-            echo -e "${GREEN}/sccpm:develop \"Trading Platform\" --mode intensive --agents 8 --focus performance${NC}"
+            echo -e "${GREEN}/sccpm:develop \"Web Platform\" --mode intensive --agents 8 --focus performance${NC}"
             echo -e "${GREEN}/sccpm:develop \"Security System\" --quality-first --extensive-testing${NC}"
             ;;
         *)
@@ -128,9 +128,9 @@ echo -e "${WHITE}/sccpm:issue \"puzzle-strategy-system\"${NC}"
 echo -e "${WHITE}/sccpm:develop \"puzzle-game\" --mode balanced --focus game-logic${NC}"
 
 echo
-echo -e "${CYAN}# 交易系統開發 Trading System Development${NC}"
-echo -e "${WHITE}/sccpm:prd \"Crypto Trading Platform\" --focus fintech${NC}"
-echo -e "${WHITE}/sccpm:develop \"trading-system\" --mode intensive --focus performance${NC}"
+echo -e "${CYAN}# Web平台開發 Web Platform Development${NC}"
+echo -e "${WHITE}/sccpm:prd \"Web Platform\" --focus ecommerce${NC}"
+echo -e "${WHITE}/sccpm:develop \"web-platform\" --mode intensive --focus performance${NC}"
 
 echo
 echo -e "${CYAN}# 品質保證管道 Quality Assurance Pipeline${NC}"

@@ -111,13 +111,13 @@ MCP協作層級:
 
 ### 🚀 終極品質開發 (推薦)
 ```bash
-/sccpm:develop-ultimate "crypto-trading-bot" \
+/sccpm:develop-ultimate "web-platform" \
   --mode enterprise \
   --agents 12 \
   --quality-gates strict \
   --git-workflow gitflow \
   --ci-cd github-actions \
-  --standards .claude/standards/crypto-project.yml \
+  --standards .claude/standards/web-project.yml \
   --auto-deploy staging \
   --security-scan comprehensive \
   --performance-budget strict \
@@ -138,7 +138,7 @@ MCP協作層級:
 
 ### ⚡ 高性能系統開發
 ```bash
-/sccpm:develop-ultimate "high-frequency-trading" \
+/sccpm:develop-ultimate "data-analytics" \
   --mode performance \
   --agents 10 \
   --focus "latency,throughput,reliability" \

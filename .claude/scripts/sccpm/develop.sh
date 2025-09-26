@@ -35,7 +35,7 @@ FOCUS="${4:-general}"
 if [ -z "$PROJECT_NAME" ]; then
     echo -e "${RED}❌ 錯誤: 請提供專案名稱${NC}"
     echo -e "${CYAN}💡 使用方式: /sccpm:develop \"專案名稱\" [模式] [代理數] [重點]${NC}"
-    echo -e "${CYAN}💡 範例: /sccpm:develop \"AI交易平台\" balanced 6 performance${NC}"
+    echo -e "${CYAN}💡 範例: /sccpm:develop \"Web平台\" balanced 6 performance${NC}"
     exit 1
 fi
 
@@ -98,14 +98,14 @@ if [[ "$FOCUS" == *"game"* ]] || [[ "$FOCUS" == *"puzzle"* ]]; then
         echo -e "${CYAN}   🤖 Agent 7: 安全與驗證系統 (Security)${NC}"
         echo -e "${CYAN}   🤖 Agent 8: 文檔與品質保證 (QA & Docs)${NC}"
     fi
-elif [[ "$FOCUS" == *"trading"* ]] || [[ "$FOCUS" == *"crypto"* ]]; then
-    echo -e "${CYAN}   🤖 Agent 1: 交易引擎核心 (Trading Engine)${NC}"
-    echo -e "${CYAN}   🤖 Agent 2: 市場資料處理 (Market Data)${NC}"
-    echo -e "${CYAN}   🤖 Agent 3: 風險管理系統 (Risk Management)${NC}"
+elif [[ "$FOCUS" == *"data"* ]] || [[ "$FOCUS" == *"analytics"* ]]; then
+    echo -e "${CYAN}   🤖 Agent 1: 資料處理核心 (Data Processing)${NC}"
+    echo -e "${CYAN}   🤖 Agent 2: 資料分析引擎 (Analytics Engine)${NC}"
+    echo -e "${CYAN}   🤖 Agent 3: 資料庫設計 (Database Design)${NC}"
     echo -e "${CYAN}   🤖 Agent 4: API 整合層 (API Integration)${NC}"
-    echo -e "${CYAN}   🤖 Agent 5: 用戶介面與儀表板 (Dashboard)${NC}"
+    echo -e "${CYAN}   🤖 Agent 5: 資料視覺化 (Data Visualization)${NC}"
     if [ "$AGENTS_COUNT" -gt 5 ]; then
-        echo -e "${CYAN}   🤖 Agent 6: 安全與合規 (Security & Compliance)${NC}"
+        echo -e "${CYAN}   🤖 Agent 6: 資料安全與治理 (Data Security)${NC}"
     fi
 else
     echo -e "${CYAN}   🤖 Agent 1: 核心業務邏輯 (Core Logic)${NC}"

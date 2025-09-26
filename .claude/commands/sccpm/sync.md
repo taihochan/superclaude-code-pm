@@ -26,7 +26,7 @@
 /sccpm:sync "epic-01-puzzle-strategy-system" --create-issues --auto-assign
 
 # GitHub Issues with enhanced specifications / 帶增強規格的 GitHub Issues
-/sccpm:sync "trading-engine-epic" --detailed-specs --acceptance-criteria --milestones
+/sccpm:sync "web-platform-epic" --detailed-specs --acceptance-criteria --milestones
 
 # Parallel development with GitHub integration / 並行開發與 GitHub 整合
 /sccpm:sync "ai-platform" --parallel-branches --auto-pr-creation

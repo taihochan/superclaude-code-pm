@@ -40,7 +40,7 @@ Session Monitor → State Detection → Deviation Alert → Force Recovery → A
 #### 與開發指令整合 / Integration with Development Commands
 ```bash
 # 啟動開發指令並自動附加守護者
-/sccpm:develop-ultimate "crypto-trading-bot" \
+/sccpm:develop-ultimate "web-platform" \
     --mode enterprise \
     --agents 12 \
     --watchdog-enabled \
@@ -125,7 +125,7 @@ Session Monitor → State Detection → Deviation Alert → Force Recovery → A
 #### 與 develop-ultimate 整合 / Integration with develop-ultimate
 ```bash
 # 自動附加守護者的終極開發模式
-/sccpm:develop-ultimate "crypto-trading-bot" \
+/sccpm:develop-ultimate "web-platform" \
     --mode enterprise \
     --agents 12 \
     --quality-gates strict \

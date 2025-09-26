@@ -81,11 +81,11 @@ if [[ "$EPIC_NAME" == *"puzzle"* ]] || [[ "$EPIC_NAME" == *"strategy"* ]]; then
     echo -e "${CYAN}   • 算法核心 → 遊戲邏輯 → UI 組件 → 整合測試${NC}"
     echo -e "${CYAN}   • 並行開發: AI 引擎 & 視覺介面${NC}"
     echo -e "${CYAN}   • 重點: 性能優化與用戶體驗${NC}"
-elif [[ "$EPIC_NAME" == *"trading"* ]] || [[ "$EPIC_NAME" == *"crypto"* ]]; then
-    echo -e "${CYAN}   📈 交易系統特定工作流程:${NC}"
-    echo -e "${CYAN}   • API 整合 → 資料處理 → 交易邏輯 → 風險控制${NC}"
-    echo -e "${CYAN}   • 並行開發: 後端 API & 前端儀表板${NC}"
-    echo -e "${CYAN}   • 重點: 安全性與即時性能${NC}"
+elif [[ "$EPIC_NAME" == *"ecommerce"* ]] || [[ "$EPIC_NAME" == *"shop"* ]]; then
+    echo -e "${CYAN}   🛒 電商系統特定工作流程:${NC}"
+    echo -e "${CYAN}   • 商品管理 → 購物車邏輯 → 支付整合 → 訂單處理${NC}"
+    echo -e "${CYAN}   • 並行開發: 後端 API & 前端商店界面${NC}"
+    echo -e "${CYAN}   • 重點: 使用者體驗與交易安全${NC}"
 else
     echo -e "${CYAN}   🔧 通用系統工作流程:${NC}"
     echo -e "${CYAN}   • 需求分析 → 架構設計 → 核心實作 → 測試驗證${NC}"

@@ -229,10 +229,10 @@
       "description": "項目特定忽略規則",
       "enabled": true,
       "patterns": [
-        "crypto-trading-bot-specific-temp/**",
-        "*.trading-temp",
-        "market-data-cache/**",
-        "ai-model-cache/**"
+        "project-specific-temp/**",
+        "*.project-temp",
+        "data-cache/**",
+        "model-cache/**"
       ]
     },
 

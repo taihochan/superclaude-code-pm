@@ -217,7 +217,7 @@ start_session_monitoring() {
     echo
 
     # 保存當前指令供回歸使用
-    echo '/sccpm:develop-ultimate "crypto-trading-bot" --mode enterprise --agents 12' > /tmp/sccpm_last_command
+    echo '/sccpm:develop-ultimate "web-platform" --mode enterprise --agents 12' > /tmp/sccpm_last_command
 
     local deviation_count=0
     local monitoring_start_time=$(date +%s)

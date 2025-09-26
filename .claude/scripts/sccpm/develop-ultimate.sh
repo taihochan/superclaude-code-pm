@@ -139,7 +139,7 @@ echo
 echo -e "${YELLOW}${TEST} Step 3.2: Playwright 完整測試覆蓋 / Complete Playwright Test Coverage${NC}"
 echo -e "${WHITE}   • 正在配置全方位自動化測試...${NC}"
 echo -e "${WHITE}   • Configuring comprehensive automated testing...${NC}"
-echo -e "${GREEN}   • ${SUCCESS} E2E 用戶流程測試: 127 個關鍵交易流程 / 127 critical trading flows${NC}"
+echo -e "${GREEN}   • ${SUCCESS} E2E 用戶流程測試: 127 個關鍵業務流程 / 127 critical business flows${NC}"
 echo -e "${GREEN}   • ${SUCCESS} 跨瀏覽器測試: Chrome + Firefox + Safari + Edge${NC}"
 echo -e "${GREEN}   • ${SUCCESS} 響應式設計測試: Desktop + Tablet + Mobile (12 breakpoints)${NC}"
 echo -e "${GREEN}   • ${SUCCESS} 視覺回歸測試: 89 個 UI 組件快照比對 / 89 UI component snapshots${NC}"
